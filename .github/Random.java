@@ -16,4 +16,8 @@ public class Random {
 
         return "";
     }
+
+    public static int getRandomInt(double min, double max){
+        return (int)(Math.floor(Math.random()*(max-min)+min));
+    }
 }
