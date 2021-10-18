@@ -11,7 +11,7 @@ public class Player {
     private int speed;
     private int playmaking;
 
-    public Player(int bH, int tP, int mR, int cR, int iq, int si, in h, int sp, int plm) {
+    public Player(int bH, int tP, int mR, int cR, int iq, int si, int h, int sp, int plm) {
         bHandle = bH;
         threePoint = tP;
         midRange = mR;
@@ -23,4 +23,13 @@ public class Player {
         playmaking = plm;
     }
 
+    public int getHandle(){return bHandle;}
+    public int getThree(){return threePoint;}
+    public int getMid(){return midRange;}
+    public int getClose(){return closeRange;}
+    public int getIQ(){return IQ;}
+    public int getSize(){return size;}
+    public int getHeight(){return height;}
+    public int getSpeed(){return speed;}
+    public int getPlaymaking(){return playmaking;}
 }
