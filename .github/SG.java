@@ -1,14 +1,14 @@
 public class SG extends Player{
 
     public SG(){
-        super(Random.getRandomInt(70,100),
-        Random.getRandomInt(50,91),
-        Random.getRandomInt(60,85),
-        Random.getRandomInt(70,90),
+        super(Random.getRandomInt(70,85),
         Random.getRandomInt(70,100),
-        Random.getRandomInt(30,45),
-        Random.getRandomInt(30,45),
-        Random.getRandomInt(75,100),
-        Random.getRandomInt(70,100));
+        Random.getRandomInt(80,90),
+        Random.getRandomInt(65,85),
+        Random.getRandomInt(60,80),
+        Random.getRandomInt(35,55),
+        Random.getRandomInt(40,55),
+        Random.getRandomInt(65,90),
+        Random.getRandomInt(60,80));
     }
 }
