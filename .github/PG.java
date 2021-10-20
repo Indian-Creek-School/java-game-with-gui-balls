@@ -14,7 +14,7 @@ public class PG extends Player {
 
     public int getPGOverall(){
         int average = 0;
-        average = (1.25*this.getHandle()+
+        average = (int)(1.25*this.getHandle()+
         0.5*this.getClose()+
         0.5*this.getHeight()+
         1.25*this.getIQ()+
@@ -23,5 +23,7 @@ public class PG extends Player {
         0.5*this.getSize()+
         1.25*this.getThree()+
         1.25*this.getSpeed())/9;
+
+        return average;
     }
 }
