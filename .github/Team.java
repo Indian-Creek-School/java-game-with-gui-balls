@@ -10,9 +10,9 @@ public class Team {
     public int getTeamOverall(){ //returns team overall
         int sum = 0;
         int average = 0;
-        String position="";
+        String position = "";
         for(Player p: team) {
-            position = p.getClass()
+            position = p.getClass();
             if(position.equals("PG")){
                 sum += p.getPGOverall();
             } else if(position.equals("SG")){
