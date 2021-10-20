@@ -10,22 +10,20 @@ public class Team {
     public int getTeamOverall(){ //returns team overall
         int sum = 0;
         int average = 0;
-        String position = "";
         for(Player p: team) {
-            position = p.getClass();
-            if(position.equals("PG")){
+            if(p instanceof PG){
                 sum += p.getPGOverall();
-            } else if(position.equals("SG")){
+            } else if(p instanceof SG){
                 sum += p.getSGOverall();
-            } else if(position.equals("SF")){
+            } else if(p instanceof SF){
                 sum += p.getSFOverall();
-            } else if(position.equals("PF")){
+            } else if(p instanceof PF){
                 sum += p.getPFOverall();
-            } else if(position.equals("Center")){
+            } else if(p instanceof Center){
                 sum += p.getCenterOverall();
             }
         }
-        
+
         average = (int)(sum/team.size()+0.5);
         return average;
     }
