@@ -11,4 +11,8 @@ public class SG extends Player{
         Random.getRandomInt(65,90),
         Random.getRandomInt(60,80));
     }
+
+    public getSGOverall(){
+        
+    }
 }

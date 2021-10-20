@@ -4,5 +4,9 @@ public class Center extends Player{
         super(bH, tP, mR, cR, iq, si, h, sp, plm);
         //TODO Auto-generated constructor stub
     }
+
+    public getCenterOverall(){
+        
+    }
     
 }

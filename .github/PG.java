@@ -11,4 +11,8 @@ public class PG extends Player {
         Random.getRandomInt(75,100),
         Random.getRandomInt(70,100));
     }
+
+    public getPGOverall(){
+        
+    }
 }

@@ -11,5 +11,9 @@ public class SF extends Player{
         Random.getRandomInt(50,70),
         Random.getRandomInt(45,60));
     }
+
+    public getSFOverall(){
+        
+    }
     
 }
