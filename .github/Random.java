@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Random {
     
     public static String newName(){
+        String name="";
         try{
             FileInputStream file=new FileInputStream("names.txt");
             Scanner sc=new Scanner(file);
@@ -11,10 +12,11 @@ public class Random {
             while(sc.hasNext()){
                 names.add(sc.nextLine());
             }
-            
+            name=names.get(getRandomInt(1, 559));
+            sc.close();
         }catch (Exception e){}
-
-        return "";
+        return name;
+        
     }
 
     public static int getRandomInt(double min, double max){
