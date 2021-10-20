@@ -12,7 +12,7 @@ public class PF extends Player{
         Random.getRandomInt(30,45));
     }
 
-    public getPFOverall(){
+    public int getPFOverall(){
         
     }
     

@@ -12,7 +12,7 @@ public class SG extends Player{
         Random.getRandomInt(60,80));
     }
 
-    public getSGOverall(){
+    public int getSGOverall(){
         
     }
 }
