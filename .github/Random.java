@@ -14,7 +14,9 @@ public class Random {
             }
             name=names.get(getRandomInt(1, 559));
             sc.close();
-        }catch (Exception e){}
+        }catch (Exception e){
+            System.out.println(e);
+        }
         return name;
         
     }
