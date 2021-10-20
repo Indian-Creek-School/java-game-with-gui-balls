@@ -12,7 +12,16 @@ public class PG extends Player {
         Random.getRandomInt(70,100));
     }
 
-    public getPGOverall(){
-        
+    public int getPGOverall(){
+        int average = 0;
+        average = (1.5*this.getHandle()+
+        this.getClose()+
+        0.5*this.getHeight()+
+        1.25*this.getIQ()+
+        this.getMid()+
+        this.getPlaymaking()+
+        0.5*this.getSize()+
+        1.25*this.getThree()+
+        this.getSpeed())/9;
     }
 }
