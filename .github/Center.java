@@ -1,8 +1,15 @@
 public class Center extends Player{
 
-    public Center(int bH, int tP, int mR, int cR, int iq, int si, int h, int sp, int plm) {
-        super(bH, tP, mR, cR, iq, si, h, sp, plm);
-        //TODO Auto-generated constructor stub
+    public Center(){
+        super(Random.getRandomInt(30,40),
+        Random.getRandomInt(1,20),
+        Random.getRandomInt(35,65),
+        Random.getRandomInt(80,100),
+        Random.getRandomInt(30,50),
+        Random.getRandomInt(80,100),
+        Random.getRandomInt(80,100),
+        Random.getRandomInt(25,45),
+        Random.getRandomInt(20,35));
     }
     
 }
