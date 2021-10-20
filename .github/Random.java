@@ -19,7 +19,7 @@ public class Random {
         
     }
 
-    public static int getRandomInt(double min, double max){
+    public static int getRandomInt(int min, int max){
         return (int)(Math.floor(Math.random()*(max-min)+min));
     }
 }
