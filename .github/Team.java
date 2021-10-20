@@ -25,6 +25,7 @@ public class Team {
                 sum += p.getCenterOverall();
             }
         }
+        
         average = (int)(sum/team.size()+0.5);
         return average;
     }
