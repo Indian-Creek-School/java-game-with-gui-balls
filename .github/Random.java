@@ -6,8 +6,8 @@ public class Random {
     public static String newName(){
         String name="";
         try{
-            FileInputStream file=new FileInputStream("C:\\Users\\cmorr\\Desktop\\School\\semester 1\\comp sci\\Indian-Creek-School\\java-game-with-gui-balls\\.github\\names.txt");
-            FileInputStream file2=new FileInputStream("C:\\Users\\cmorr\\Desktop\\School\\semester 1\\comp sci\\Indian-Creek-School\\java-game-with-gui-balls\\.github\\lastNames.txt");
+            FileInputStream file=new FileInputStream(".github\\names.txt");
+            FileInputStream file2=new FileInputStream(".github\\lastNames.txt");
             Scanner sc=new Scanner(file);
             Scanner sc2=new Scanner(file2);
             ArrayList<String> names=new ArrayList<String>();
