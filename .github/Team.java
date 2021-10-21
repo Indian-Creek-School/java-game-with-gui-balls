@@ -13,7 +13,6 @@ public class Team {
         for(Player p: team){
             sum += p.getOverall();
         }
-
         average = (int)(sum/team.size()+0.5);
         return average;
     }
