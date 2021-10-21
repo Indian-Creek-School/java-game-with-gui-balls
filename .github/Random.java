@@ -7,13 +7,20 @@ public class Random {
         String name="";
         try{
             FileInputStream file=new FileInputStream("C:\\Users\\cmorr\\Desktop\\School\\semester 1\\comp sci\\Indian-Creek-School\\java-game-with-gui-balls\\.github\\names.txt");
+            FileInputStream file2=new FileInputStream("C:\\Users\\cmorr\\Desktop\\School\\semester 1\\comp sci\\Indian-Creek-School\\java-game-with-gui-balls\\.github\\lastNames.txt");
             Scanner sc=new Scanner(file);
+            Scanner sc2=new Scanner(file2);
             ArrayList<String> names=new ArrayList<String>();
+            ArrayList<String> lastNames=new ArrayList<String>();
             while(sc.hasNext()){
                 names.add(sc.nextLine());
             }
-            name=names.get(getRandomInt(1, 559));
+            while(sc2.hasNext()){
+                lastNames.add(sc2.nextLine());
+            }
+            name=names.get(getRandomInt(1, 559))+" "+lastNames.get(getRandomInt(1, 559));
             sc.close();
+            sc2.close();
         }catch (Exception e){
             System.out.println(e);
         }
