@@ -12,7 +12,7 @@ public class Center extends Player{
         Random.getRandomInt(20,35));
     }
 
-    public int getCenterOverall(){
+    public int getOverall(){
         
     }
     
