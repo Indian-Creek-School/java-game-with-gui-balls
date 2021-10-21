@@ -6,5 +6,6 @@ public class BallsApp {
         PG bob = new PG();
         System.out.println(bob.getOverall());
         System.out.println(bob.getThree());
+        System.out.println(System.getProperty("user.dir"));
     }
 }
