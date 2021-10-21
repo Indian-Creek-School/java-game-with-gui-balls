@@ -22,11 +22,15 @@ import java.awt.GridLayout;
 
 public class BallsApp extends JPanel{
     //main class that will run
+
+    //array lists for each of the players we are going to make
     private ArrayList<PG> pgProspects;
     private ArrayList<SG> sgProspects;
     private ArrayList<SF> sfProspects;
     private ArrayList<PF> pfProspects;
     private ArrayList<Center> centerProspects;
+
+    //jcombo boxes for the dropdowns for the draft
     private JComboBox<PG> pgs;
     private JComboBox<SG> sgs;
     private JComboBox<SF> sfs;
