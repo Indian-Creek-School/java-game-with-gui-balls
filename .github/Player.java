@@ -32,4 +32,19 @@ public class Player {
     public int getHeight(){return height;}
     public int getSpeed(){return speed;}
     public int getPlaymaking(){return playmaking;}
+
+    public int getOverall(){
+        int average = 0;
+        average = (int)(1.25*this.getHandle()+
+        0.5*this.getClose()+
+        0.5*this.getHeight()+
+        1.25*this.getIQ()+
+        1*this.getMid()+
+        1.5*this.getPlaymaking()+
+        0.5*this.getSize()+
+        1.25*this.getThree()+
+        1.25*this.getSpeed())/9;
+
+        return average;
+    }
 }
