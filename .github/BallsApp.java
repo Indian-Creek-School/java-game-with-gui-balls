@@ -78,5 +78,7 @@ public class BallsApp extends JPanel{
         System.out.println(bob.getOverall());
         System.out.println(bob.getThree());
         System.out.println(System.getProperty("user.dir"));
+        mainSeason m=new mainSeason();
+        m.SoundClipTest();
     }
 }
