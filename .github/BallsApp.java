@@ -8,6 +8,9 @@ import javax.swing.JButton;
 // import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+
+import org.xml.sax.SAXNotRecognizedException;
+
 // import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -31,11 +34,11 @@ public class BallsApp extends JPanel{
     private ArrayList<Center> centerProspects;
 
     //jcombo boxes for the dropdowns for the draft
-    private JComboBox<PG> pgs;
-    private JComboBox<SG> sgs;
-    private JComboBox<SF> sfs;
-    private JComboBox<PF> pfs;
-    private JComboBox<Center> centers;
+    private JComboBox<String> pgs;
+    private JComboBox<String> sgs;
+    private JComboBox<String> sfs;
+    private JComboBox<String> pfs;
+    private JComboBox<String> centers;
 
 
     public BallsApp(){
@@ -57,8 +60,42 @@ public class BallsApp extends JPanel{
             centerProspects.add(new Center());
         }
 
+        String[] pgNames = new String[pgProspects.size()];
+        for(int i = 0; i < pgProspects.size(); i++){
+            pgNames[i] = pgProspects.get(i).toString();
+        }
 
+        String[] sgNames = new String[pgProspects.size()];
+        for(int i = 0; i < sgProspects.size(); i++){
+            sgNames[i] = sgProspects.get(i).toString();
+        }
 
+        String[] sfNames = new String[sfProspects.size()];
+        for(int i = 0; i < sfProspects.size(); i++){
+            sfNames[i] = sfProspects.get(i).toString();
+        }
+
+        String[] pfNames = new String[pfProspects.size()];
+        for(int i = 0; i < pfProspects.size(); i++){
+            pfNames[i] = pfProspects.get(i).toString();
+        }
+
+        String[] centerNames = new String[centerProspects.size()];
+        for(int i = 0; i < centerProspects.size(); i++){
+            centerNames[i] = centerProspects.get(i).toString();
+        }
+
+        pgs = new JComboBox<String>(pgNames);
+        sgs = new JComboBox<String>(sgNames);
+        sfs = new JComboBox<String>(sfNames);
+        pfs = new JComboBox<String>(pfNames);
+        centers = new JComboBox<String>(centerNames);
+
+        this.add(pgs);
+        this.add(sgs);
+        this.add(sfs);
+        this.add(pfs);
+        this.add(centers);
 
 
     }
@@ -76,13 +113,16 @@ public class BallsApp extends JPanel{
     }
 
     public static void main(String args[]){
-        System.out.println(Random.newName());
+        // System.out.println(Random.newName());
 
-        PG bob = new PG();
-        System.out.println(bob.getOverall());
-        System.out.println(bob.getThree());
-        System.out.println(System.getProperty("user.dir"));
-        mainSeason m=new mainSeason();
-        m.SoundClipTest();
+        // PG bob = new PG();
+        // System.out.println(bob.getOverall());
+        // System.out.println(bob.getThree());
+        // System.out.println(System.getProperty("user.dir"));
+        // mainSeason m=new mainSeason();
+        // m.SoundClipTest();
+
+        setUp();
+
     }
 }
