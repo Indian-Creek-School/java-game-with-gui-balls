@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.URL;
 import javax.sound.sampled.*;
 import javax.swing.*;
+import java.util.ArrayList;
 public class mainSeason{
    private static int gamecount=0;
    public static Team myTeam;
@@ -16,10 +17,15 @@ public class mainSeason{
        }
        return true;
     }
-    public static void Trade(){
+    public static ArrayList<Player> Trade(Team t2){
+      ArrayList<Player> tradeP;
+      int totalOv=0;
        if(gamecount==10||gamecount==20){
-         
+         for(Player p:myTeam.team){
+            totalOv=p.getOverall();
+         }
        }
+       return tradeP;
     }
     
     public void SoundClipTest() {
