@@ -4,13 +4,12 @@ import java.io.*;
 import java.net.URL;
 import javax.sound.sampled.*;
 import javax.swing.*;
+import java.util.ArrayList;
 public class mainSeason{
-    Team myTeam;
-
-    public mainSeason(){
-        
-    }
+   private static int gamecount=0;
+   public static Team myTeam;
     public static boolean winGame(Team t1, Team t2){
+       gamecount++;
        Team home=t1;
        Team away=t2;
        if(home.getTeamOverall()>away.getTeamOverall()){
@@ -18,8 +17,15 @@ public class mainSeason{
        }
        return true;
     }
-    public static void Trade(){
-       
+    public static ArrayList<Player> Trade(Team t2){
+      ArrayList<Player> tradeP;
+      int totalOv=0;
+       if(gamecount==10||gamecount==20){
+         for(Player p:myTeam.team){
+            totalOv=p.getOverall();
+         }
+       }
+       return tradeP;
     }
     
     public void SoundClipTest() {

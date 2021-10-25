@@ -12,8 +12,9 @@ public class Benny {
 
 // The opposing teams point guard turns the ball over a lot. What should your coach do? 1. Play zone defense. (0) 2. Play man defense. (8) 3. Full court press. (10) 4. Do nothing(5)
 
-// 
+// Your starting small forward is not 100% ready to play. What should your coach do?   1. play the starting small forward. (0)  2. Play your backup small forward. (10)
 
+// 
 
 
 
