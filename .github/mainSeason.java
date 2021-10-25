@@ -6,9 +6,7 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 public class mainSeason{
    private static int gamecount=0;
-    public mainSeason(){
-        
-    }
+   public static Team myTeam;
     public static boolean winGame(Team t1, Team t2){
        gamecount++;
        Team home=t1;
@@ -20,7 +18,7 @@ public class mainSeason{
     }
     public static void Trade(){
        if(gamecount==10||gamecount==20){
-
+         
        }
     }
     
