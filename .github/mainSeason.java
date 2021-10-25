@@ -18,6 +18,9 @@ public class mainSeason{
        }
        return true;
     }
+    public static void Trade(){
+       
+    }
     
     public void SoundClipTest() {
   
