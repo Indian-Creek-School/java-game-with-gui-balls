@@ -5,18 +5,21 @@ import java.net.URL;
 import javax.sound.sampled.*;
 import javax.swing.*;
 public class mainSeason{
-    Team myTeam;
-
-    public mainSeason(){
-        
-    }
+   private static int gamecount=0;
+   public static Team myTeam;
     public static boolean winGame(Team t1, Team t2){
+       gamecount++;
        Team home=t1;
        Team away=t2;
        if(home.getTeamOverall()>away.getTeamOverall()){
            return true;
        }
        return true;
+    }
+    public static void Trade(){
+       if(gamecount==10||gamecount==20){
+         
+       }
     }
     
     public void SoundClipTest() {
