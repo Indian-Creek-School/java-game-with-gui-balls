@@ -23,35 +23,35 @@ public class mainSeason{
       ArrayList<Player> t2Trades=new ArrayList<Player>();
       String smallest=myTeam.getSmallestPosOverall();
       if(smallest.equals("center")){
-         for(Player p: myTeam.team){
+         for(Player p: t2P){
             if(p instanceof Center){
                t2Trades.add(p);
             }
          }
       }
       if(smallest.equals("pf")){
-         for(Player p: myTeam.team){
+         for(Player p: t2P){
             if(p instanceof PF){
                t2Trades.add(p);
             }
          }
       }
       if(smallest.equals("pg")){
-         for(Player p: myTeam.team){
+         for(Player p: t2P){
             if(p instanceof PG){
                t2Trades.add(p);
             }
          }
       }
       if(smallest.equals("sf")){
-         for(Player p: myTeam.team){
+         for(Player p: t2P){
             if(p instanceof SF){
                t2Trades.add(p);
             }
          }
       }
       if(smallest.equals("sg")){
-         for(Player p: myTeam.team){
+         for(Player p: t2P){
             if(p instanceof SG){
                t2Trades.add(p);
             }
