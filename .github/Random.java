@@ -6,7 +6,8 @@ public class Random {
     public static String newName(){
         String name="";
         try{
-            FileInputStream file=new FileInputStream("names.txt");
+            String fileName="names.txt";
+            FileInputStream file=new FileInputStream(fileName);
             Scanner sc=new Scanner(file);
             ArrayList<String> names=new ArrayList<String>();
             while(sc.hasNext()){

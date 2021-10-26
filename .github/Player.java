@@ -10,7 +10,6 @@ public class Player {
     private int height;
     private int speed;
     private int playmaking;
-
     public Player(int bH, int tP, int mR, int cR, int iq, int si, int h, int sp, int plm) {
         bHandle = bH;
         threePoint = tP;
