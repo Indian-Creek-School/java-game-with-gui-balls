@@ -1,5 +1,5 @@
 
-    public class postSeason{
+    public class Benny{
         private static int gamecount=0;
         public static Team myTeam;
          public static boolean winGame(Team t1, Team t2){
