@@ -137,11 +137,11 @@ public class BallsApp extends JPanel{
                 }
 
 
-                Player selectedPlayer = new PG();
                 for(int j = 0; j < pgProspects.size(); j++){
-                    if(pgProspects.get(i).get)
+                    if(pgProspects.get(j).getName().equals(playerName)){
+                        draftedTeam.add(pgProspects.get(j));
+                    }
                 }
-
             }
         });
 
