@@ -18,7 +18,7 @@ public class mainSeason{
        return true;
     }
     public static ArrayList<Player> Trade(Team t2){
-      ArrayList<Player> tradeP=myTeam.team;
+      ArrayList<Player> tradeP=new ArrayList<Player>();
       ArrayList<Player> t2P=t2.team;
       ArrayList<Player> t2Trades=new ArrayList<Player>();
       String smallest=myTeam.getSmallestPosOverall();
@@ -47,6 +47,7 @@ public class mainSeason{
          for(Player p: t2P){
             if(p instanceof SF){
                t2Trades.add(p);
+               
             }
          }
       }
@@ -57,6 +58,7 @@ public class mainSeason{
             }
          }
       }
+
        return tradeP;
     }
     
