@@ -18,8 +18,15 @@ public class mainSeason{
       ArrayList<Player> tradeP=new ArrayList<Player>();
       ArrayList<Player> t2P=t2.team;
       ArrayList<Player> t2Trades=new ArrayList<Player>();
+      ArrayList<Player> t1Trades=new ArrayList<Player>();
       String smallest=myTeam.getSmallestPosOverall();
+
       if(smallest.equals("center")){
+         for(Player p:myTeam.team){
+            if(p instanceof Center){
+               t1Trades.add(p);
+            }
+         }
          for(Player p: t2P){
             if(p instanceof Center){
                t2Trades.add(p);
@@ -27,6 +34,11 @@ public class mainSeason{
          }
       }
       if(smallest.equals("pf")){
+         for(Player p:myTeam.team){
+            if(p instanceof PF){
+               t1Trades.add(p);
+            }
+         }
          for(Player p: t2P){
             if(p instanceof PF){
                t2Trades.add(p);
@@ -34,6 +46,11 @@ public class mainSeason{
          }
       }
       if(smallest.equals("pg")){
+         for(Player p:myTeam.team){
+            if(p instanceof PG){
+               t1Trades.add(p);
+            }
+         }
          for(Player p: t2P){
             if(p instanceof PG){
                t2Trades.add(p);
@@ -41,6 +58,11 @@ public class mainSeason{
          }
       }
       if(smallest.equals("sf")){
+         for(Player p:myTeam.team){
+            if(p instanceof SF){
+               t1Trades.add(p);
+            }
+         }
          for(Player p: t2P){
             if(p instanceof SF){
                t2Trades.add(p);
@@ -49,6 +71,11 @@ public class mainSeason{
          }
       }
       if(smallest.equals("sg")){
+         for(Player p:myTeam.team){
+            if(p instanceof SG){
+               t1Trades.add(p);
+            }
+         }
          for(Player p: t2P){
             if(p instanceof SG){
                t2Trades.add(p);
