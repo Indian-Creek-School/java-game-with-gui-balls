@@ -19,7 +19,13 @@ public class mainSeason{
     }
     public static ArrayList<Player> Trade(Team t2){
       ArrayList<Player> tradeP=myTeam.team;
+      ArrayList<Player> t2P=t2.team;
       String smallest=myTeam.getSmallestPosOverall();
+      if(smallest.equals("center")){
+         for(Player p: t2P){
+            
+         }
+      }
        return tradeP;
     }
     
