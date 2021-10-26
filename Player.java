@@ -1,6 +1,6 @@
 import javax.swing.text.html.HTML;
 
-public class Player {
+public abstract class Player {
     private int bHandle;
     private int threePoint;
     private int midRange;
@@ -20,6 +20,7 @@ public class Player {
         height = h;
         speed = sp;
         playmaking = plm;
+        name=Random.newName();
     }
 
     public int getHandle(){return bHandle;}
@@ -31,4 +32,15 @@ public class Player {
     public int getHeight(){return height;}
     public int getSpeed(){return speed;}
     public int getPlaymaking(){return playmaking;}
+    public String getName(){
+        return name;
+    }
+    public abstract int getOverall();
+    public abstract String getPos();
+
+
+    public String toString(){
+        return name;
+    }
+
 }

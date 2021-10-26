@@ -12,7 +12,7 @@ public class PG extends Player {
         Random.getRandomInt(70,100));
     }
 
-    public int getPGOverall(){
+    public int getOverall(){
         int average = 0;
         average = (int)(1.25*this.getHandle()+
         0.5*this.getClose()+
@@ -25,5 +25,9 @@ public class PG extends Player {
         1.25*this.getSpeed())/9;
 
         return average;
+    }
+
+    public String getPos(){
+        return "PG";
     }
 }
