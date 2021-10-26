@@ -10,6 +10,7 @@ public abstract class Player {
     private int height;
     private int speed;
     private int playmaking;
+    private String name;
     public Player(int bH, int tP, int mR, int cR, int iq, int si, int h, int sp, int plm) {
         bHandle = bH;
         threePoint = tP;
