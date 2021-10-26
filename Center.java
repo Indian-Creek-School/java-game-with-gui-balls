@@ -26,5 +26,9 @@ public class Center extends Player{
 
         return average;
     }
+
+    public String getPos(){
+        return "Center";
+    }
     
 }

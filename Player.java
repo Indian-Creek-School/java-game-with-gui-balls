@@ -35,6 +35,7 @@ public abstract class Player {
     public int getPlaymaking(){return playmaking;}
 
     public abstract int getOverall();
+    public abstract String getPos();
 
 
     public String toString(){

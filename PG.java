@@ -26,4 +26,8 @@ public class PG extends Player {
 
         return average;
     }
+
+    public String getPos(){
+        return "PG";
+    }
 }

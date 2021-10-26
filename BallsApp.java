@@ -32,6 +32,11 @@ public class BallsApp extends JPanel{
     private ArrayList<SF> sfProspects;
     private ArrayList<PF> pfProspects;
     private ArrayList<Center> centerProspects;
+    private ArrayList<Player> draftedTeam;
+    private ArrayList<Player> simTeam1;
+    private ArrayList<Player> simTeam2;
+    private ArrayList<Player> simTeam3;
+    private ArrayList<Player> simTeam4;
 
     //jcombo boxes for the dropdowns for the draft
     private JComboBox<String> pgs;
@@ -39,6 +44,8 @@ public class BallsApp extends JPanel{
     private JComboBox<String> sfs;
     private JComboBox<String> pfs;
     private JComboBox<String> centers;
+
+    public JButton b1;
 
 
     public BallsApp(){
@@ -49,7 +56,7 @@ public class BallsApp extends JPanel{
         pfProspects = new ArrayList<PF>();
         centerProspects = new ArrayList<Center>();
         //setting a JFrame
-        this.setLayout(new GridLayout(1,5));
+        this.setLayout(new GridLayout(2,5));
 
         //initializing JComboBoxes
         for(int i = 0; i < 5; i++){
@@ -62,27 +69,27 @@ public class BallsApp extends JPanel{
 
         String[] pgNames = new String[pgProspects.size()];
         for(int i = 0; i < pgProspects.size(); i++){
-            pgNames[i] = pgProspects.get(i).toString();
+            pgNames[i] = pgProspects.get(i).toString() + ", " + pgProspects.get(i).getPos() + ", " + pgProspects.get(i).getOverall();
         }
 
         String[] sgNames = new String[pgProspects.size()];
         for(int i = 0; i < sgProspects.size(); i++){
-            sgNames[i] = sgProspects.get(i).toString();
+            sgNames[i] = sgProspects.get(i).toString() + ", " + sgProspects.get(i).getPos() + ", " + sgProspects.get(i).getOverall();
         }
 
         String[] sfNames = new String[sfProspects.size()];
         for(int i = 0; i < sfProspects.size(); i++){
-            sfNames[i] = sfProspects.get(i).toString();
+            sfNames[i] = sfProspects.get(i).toString() + ", " + sfProspects.get(i).getPos() + ", " + sfProspects.get(i).getOverall();
         }
 
         String[] pfNames = new String[pfProspects.size()];
         for(int i = 0; i < pfProspects.size(); i++){
-            pfNames[i] = pfProspects.get(i).toString();
+            pfNames[i] = pfProspects.get(i).toString() + ", " + pfProspects.get(i).getPos() + ", " + pfProspects.get(i).getOverall();
         }
 
         String[] centerNames = new String[centerProspects.size()];
         for(int i = 0; i < centerProspects.size(); i++){
-            centerNames[i] = centerProspects.get(i).toString();
+            centerNames[i] = centerProspects.get(i).toString() + ", " + centerProspects.get(i).getPos() + ", " + centerProspects.get(i).getOverall();
         }
 
         pgs = new JComboBox<String>(pgNames);
@@ -91,11 +98,26 @@ public class BallsApp extends JPanel{
         pfs = new JComboBox<String>(pfNames);
         centers = new JComboBox<String>(centerNames);
 
+        //adding the draft button
+
+        b1 = new JButton("Draft");
+        b1.setVerticalTextPosition(AbstractButton.CENTER);
+        b1.setHorizontalTextPosition(AbstractButton.LEADING); 
+
+        b1.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+
+
+            }
+        });
+
+
         this.add(pgs);
         this.add(sgs);
         this.add(sfs);
         this.add(pfs);
         this.add(centers);
+        this.add(b1);
 
 
     }

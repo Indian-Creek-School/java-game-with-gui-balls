@@ -26,5 +26,9 @@ public class SF extends Player{
 
         return average;
     }
+
+    public String getPos(){
+        return "SF";
+    }
     
 }
