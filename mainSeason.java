@@ -18,12 +18,20 @@ public class mainSeason{
        return true;
     }
     public static ArrayList<Player> Trade(Team t2){
-      ArrayList<Player> tradeP;
-      int totalOv=0;
+      ArrayList<Player> tradeP=myTeam.team;
+      int centerOv=myTeam.getPosOverall("center");
+      int pfOv=myTeam.getPosOverall("pf");
+      int pgOv=myTeam.getPosOverall("pg");
+      int sfOv=myTeam.getPosOverall("sf");
+      int sgOv=myTeam.getPosOverall("sg");
+      int smallest=centerOv;
+      int[] posOv={centerOv,pfOv,pgOv,sfOv,sgOv};
        if(gamecount==10||gamecount==20){
-         for(Player p:myTeam.team){
-            totalOv=p.getOverall();
-         }
+          for(int i:posOv){
+             if(smallest<i){
+                smallest=i;
+             }
+          }
        }
        return tradeP;
     }
