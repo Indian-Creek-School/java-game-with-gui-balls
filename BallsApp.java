@@ -45,11 +45,18 @@ public class BallsApp extends JPanel{
     private JComboBox<String> pfs;
     private JComboBox<String> centers;
 
+    //JButtons to be used for drafting
     public JButton b1;
     public JButton b2;
     public JButton b3;
     public JButton b4;
     public JButton b5;
+
+    //continue button
+    public JButton b6;
+
+    //JLabel for showing team:
+    public JLabel output;
 
 
     public BallsApp(){
@@ -59,8 +66,9 @@ public class BallsApp extends JPanel{
         sfProspects = new ArrayList<SF>();
         pfProspects = new ArrayList<PF>();
         centerProspects = new ArrayList<Center>();
+
         //setting a JFrame
-        this.setLayout(new GridLayout(5,2));
+        this.setLayout(new GridLayout(6,2));
 
         //initializing JComboBoxes
         for(int i = 0; i < 5; i++){
@@ -71,6 +79,7 @@ public class BallsApp extends JPanel{
             centerProspects.add(new Center());
         }
 
+        //defining new string arrays to set JComboBoxes to that include players name, position, and overall
         String[] pgNames = new String[pgProspects.size()];
         for(int i = 0; i < pgProspects.size(); i++){
             pgNames[i] = pgProspects.get(i).toString() + ", " + pgProspects.get(i).getPos() + ", " + pgProspects.get(i).getOverall();
@@ -96,6 +105,7 @@ public class BallsApp extends JPanel{
             centerNames[i] = centerProspects.get(i).toString() + ", " + centerProspects.get(i).getPos() + ", " + centerProspects.get(i).getOverall();
         }
 
+        //initializing JComboBoxes
         pgs = new JComboBox<String>(pgNames);
         sgs = new JComboBox<String>(sgNames);
         sfs = new JComboBox<String>(sfNames);
@@ -103,7 +113,6 @@ public class BallsApp extends JPanel{
         centers = new JComboBox<String>(centerNames);
 
         //initializing the draft buttons
-
         b1 = new JButton("Draft PG");
         b1.setVerticalTextPosition(AbstractButton.CENTER);
         b1.setHorizontalTextPosition(AbstractButton.LEADING); 
@@ -124,58 +133,166 @@ public class BallsApp extends JPanel{
         b5.setVerticalTextPosition(AbstractButton.CENTER);
         b5.setHorizontalTextPosition(AbstractButton.LEADING); 
 
+        b6 = new JButton("Continue");
+        b6.setVerticalTextPosition(AbstractButton.CENTER);
+        b6.setHorizontalTextPosition(AbstractButton.LEADING); 
+
+
         //intializing user drafted arraylist
         draftedTeam = new ArrayList<Player>();
+
+        //JLabel that will display team as it gets drafted
+        output = new JLabel("Team");
+        output.setText(draftedTeam.toString());
+        Font font = new Font("Times New Roman", Font.BOLD, 12);
+        output.setFont(font);
+        output.setForeground(Color.BLACK);
+
+        /**
+         * All the actions listeners: Gets the selected player, turn it into a string of the players name,
+         * Finds player object that matches with that players name, adds it to the
+         * draftedTeam arraylist, and removes it from the JComboBox options.
+         */
 
         b1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 String playerSelected = pgs.getSelectedItem().toString();
+                // System.out.println(playerSelected);
                 String playerName = "";
                 int i = 0;
-                while(!(playerSelected.charAt(i) == ' ')){
+                while(!(playerSelected.charAt(i) == ',')){
                     playerName += playerSelected.charAt(i);
+                    i++;
                 }
-
+                // System.out.println(playerName);
 
                 for(int j = 0; j < pgProspects.size(); j++){
                     if(pgProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(pgProspects.get(j));
+                        System.out.println(draftedTeam.toString());
                         pgProspects.remove(j);
+                        pgs.removeItem(pgNames[j]);
                     }
                 }
+                // System.out.println(pgProspects.toString());
 
+                //updating text:
+                for(int k = 0; k < draftedTeam.size(); k++){
+                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                }
+                repaint();
             }
         });
 
         b2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                String playerSelected = sgs.getSelectedItem().toString();
+                // System.out.println(playerSelected);
+                String playerName = "";
+                int i = 0;
+                while(!(playerSelected.charAt(i) == ',')){
+                    playerName += playerSelected.charAt(i);
+                    i++;
+                }
+                // System.out.println(playerName);
 
-
+                for(int j = 0; j < sgProspects.size(); j++){
+                    if(sgProspects.get(j).getName().equals(playerName)){
+                        draftedTeam.add(sgProspects.get(j));
+                        System.out.println(draftedTeam.toString());
+                        sgProspects.remove(j);
+                        sgs.removeItem(sgNames[j]);
+                    }
+                }
+                for(int k = 0; k < draftedTeam.size(); k++){
+                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                }
+                repaint();
             }
         });
 
         b3.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                String playerSelected = sfs.getSelectedItem().toString();
+                // System.out.println(playerSelected);
+                String playerName = "";
+                int i = 0;
+                while(!(playerSelected.charAt(i) == ',')){
+                    playerName += playerSelected.charAt(i);
+                    i++;
+                }
+                // System.out.println(playerName);
 
-
+                for(int j = 0; j < sfProspects.size(); j++){
+                    if(sfProspects.get(j).getName().equals(playerName)){
+                        draftedTeam.add(sfProspects.get(j));
+                        System.out.println(draftedTeam.toString());
+                        sfProspects.remove(j);
+                        sfs.removeItem(sfNames[j]);
+                    }
+                }
+                for(int k = 0; k < draftedTeam.size(); k++){
+                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                }
+                repaint();
             }
         });
 
         b4.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                String playerSelected = pfs.getSelectedItem().toString();
+                // System.out.println(playerSelected);
+                String playerName = "";
+                int i = 0;
+                while(!(playerSelected.charAt(i) == ',')){
+                    playerName += playerSelected.charAt(i);
+                    i++;
+                }
+                // System.out.println(playerName);
 
-
+                for(int j = 0; j < pfProspects.size(); j++){
+                    if(pfProspects.get(j).getName().equals(playerName)){
+                        draftedTeam.add(pfProspects.get(j));
+                        System.out.println(draftedTeam.toString());
+                        pfProspects.remove(j);
+                        pfs.removeItem(pfNames[j]);
+                    }
+                }
+                for(int k = 0; k < draftedTeam.size(); k++){
+                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                }
+                repaint();
             }
         });
 
         b5.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                String playerSelected = centers.getSelectedItem().toString();
+                // System.out.println(playerSelected);
+                String playerName = "";
+                int i = 0;
+                while(!(playerSelected.charAt(i) == ',')){
+                    playerName += playerSelected.charAt(i);
+                    i++;
+                }
+                // System.out.println(playerName);
 
-
+                for(int j = 0; j < centerProspects.size(); j++){
+                    if(centerProspects.get(j).getName().equals(playerName)){
+                        draftedTeam.add(centerProspects.get(j));
+                        System.out.println(draftedTeam.toString());
+                        centerProspects.remove(j);
+                        centers.removeItem(sfNames[j]);
+                    }
+                }
+                for(int k = 0; k < draftedTeam.size(); k++){
+                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                }
+                repaint();
             }
         });
 
-
+        //adding elements to grid layout
         this.add(pgs);
         this.add(b1);
         this.add(sgs);
@@ -186,7 +303,9 @@ public class BallsApp extends JPanel{
         this.add(b4);
         this.add(centers);
         this.add(b5);
-
+        this.add(output);
+        this.add(b6);
+        repaint();
 
     }
 
