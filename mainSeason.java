@@ -25,14 +25,27 @@ public class mainSeason{
       int sfOv=myTeam.getPosOverall("sf");
       int sgOv=myTeam.getPosOverall("sg");
       int smallest=centerOv;
+      int centerOv2=myTeam.getPosOverall("center");
+      int pfOv2=myTeam.getPosOverall("pf");
+      int pgOv2=myTeam.getPosOverall("pg");
+      int sfOv2=myTeam.getPosOverall("sf");
+      int sgOv2=myTeam.getPosOverall("sg");
+      int smallest2=centerOv;
       int[] posOv={centerOv,pfOv,pgOv,sfOv,sgOv};
+      int[] posOv2={centerOv2,pfOv2,pgOv2,sfOv2,sgOv2};
        if(gamecount==10||gamecount==20){
           for(int i:posOv){
              if(smallest<i){
                 smallest=i;
              }
           }
+          for(int j:posOv2){
+            if(smallest2<j){
+               smallest2=j;
+            }
+         }
        }
+
        return tradeP;
     }
     
