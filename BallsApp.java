@@ -102,7 +102,7 @@ public class BallsApp extends JPanel{
         pfs = new JComboBox<String>(pfNames);
         centers = new JComboBox<String>(centerNames);
 
-        //adding the draft button
+        //initializing the draft buttons
 
         b1 = new JButton("Draft PG");
         b1.setVerticalTextPosition(AbstractButton.CENTER);
@@ -124,9 +124,23 @@ public class BallsApp extends JPanel{
         b5.setVerticalTextPosition(AbstractButton.CENTER);
         b5.setHorizontalTextPosition(AbstractButton.LEADING); 
 
+        //intializing user drafted arraylist
+        draftedTeam = new ArrayList<Player>();
+
         b1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                String playerSelected = pgs.getSelectedItem().toString();
+                String playerName = "";
+                int i = 0;
+                while(!(playerSelected.charAt(i) == ' ')){
+                    playerName += playerSelected.charAt(i);
+                }
 
+
+                Player selectedPlayer = new PG();
+                for(int j = 0; j < pgProspects.size(); j++){
+                    if(pgProspects.get(i).get)
+                }
 
             }
         });
