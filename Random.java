@@ -2,8 +2,8 @@ import java.io.FileInputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Random {
-    public static String aids(){
-        String name="";
+    public static String aids(Team t){
+        String name=t.team.get(getRandomInt(0, 7)).getName();
         return name+" has aids";
     }
     
