@@ -47,6 +47,32 @@ public class Team {
         }
         return total/count;
     }
+    public String getSmallestPosOverall(){
+        int centerOv=getPosOverall("center");
+        int pfOv=getPosOverall("pf");
+        int pgOv=getPosOverall("pg");
+        int sfOv=getPosOverall("sf");
+        int sgOv=getPosOverall("sg");
+        int smallest=centerOv;
+        int[] posOv={centerOv,pfOv,pgOv,sfOv,sgOv};
+        for(int i:posOv){
+            if(smallest<i){
+               smallest=i;
+            }
+         }
+         if(smallest==centerOv){
+             return "center";
+         }else if(smallest==pfOv){
+             return "pf";
+         }else if(smallest==pgOv){
+             return "pg";
+         }else if(smallest==sfOv){
+             return "sf";
+         }else if(smallest==sgOv){
+             return "sg";
+         }
+        return "";
+    }
     public int getTeamOverall(){ //returns team overall
         int sum = 0;
         int average = 0;
