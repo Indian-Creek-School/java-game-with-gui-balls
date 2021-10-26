@@ -33,7 +33,9 @@ public abstract class Player {
     public int getHeight(){return height;}
     public int getSpeed(){return speed;}
     public int getPlaymaking(){return playmaking;}
-
+    public String getName(){
+        return name;
+    }
     public abstract int getOverall();
     public abstract String getPos();
 
