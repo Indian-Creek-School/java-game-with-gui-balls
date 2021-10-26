@@ -1,5 +1,16 @@
-public class Benny {
-    
+
+    public class Benny{
+        private static int gamecount=0;
+        public static Team myTeam;
+         public static boolean winGame(Team t1, Team t2){
+            gamecount++;
+            Team home=t1;
+            Team away=t2;
+            if(home.getTeamOverall()>away.getTeamOverall()){
+                return true;
+            }
+            return true;
+         }
 }
 
 
