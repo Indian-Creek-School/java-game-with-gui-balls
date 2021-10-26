@@ -140,8 +140,10 @@ public class BallsApp extends JPanel{
                 for(int j = 0; j < pgProspects.size(); j++){
                     if(pgProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(pgProspects.get(j));
+                        pgProspects.remove(j);
                     }
                 }
+
             }
         });
 
