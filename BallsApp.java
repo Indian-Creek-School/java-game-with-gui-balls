@@ -46,6 +46,10 @@ public class BallsApp extends JPanel{
     private JComboBox<String> centers;
 
     public JButton b1;
+    public JButton b2;
+    public JButton b3;
+    public JButton b4;
+    public JButton b5;
 
 
     public BallsApp(){
@@ -56,7 +60,7 @@ public class BallsApp extends JPanel{
         pfProspects = new ArrayList<PF>();
         centerProspects = new ArrayList<Center>();
         //setting a JFrame
-        this.setLayout(new GridLayout(2,5));
+        this.setLayout(new GridLayout(5,2));
 
         //initializing JComboBoxes
         for(int i = 0; i < 5; i++){
@@ -100,9 +104,25 @@ public class BallsApp extends JPanel{
 
         //adding the draft button
 
-        b1 = new JButton("Draft");
+        b1 = new JButton("Draft PG");
         b1.setVerticalTextPosition(AbstractButton.CENTER);
         b1.setHorizontalTextPosition(AbstractButton.LEADING); 
+
+        b2 = new JButton("Draft SG");
+        b2.setVerticalTextPosition(AbstractButton.CENTER);
+        b2.setHorizontalTextPosition(AbstractButton.LEADING); 
+
+        b3 = new JButton("Draft SF");
+        b3.setVerticalTextPosition(AbstractButton.CENTER);
+        b3.setHorizontalTextPosition(AbstractButton.LEADING); 
+
+        b4 = new JButton("Draft PF");
+        b4.setVerticalTextPosition(AbstractButton.CENTER);
+        b4.setHorizontalTextPosition(AbstractButton.LEADING); 
+
+        b5 = new JButton("Draft C");
+        b5.setVerticalTextPosition(AbstractButton.CENTER);
+        b5.setHorizontalTextPosition(AbstractButton.LEADING); 
 
         b1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -111,13 +131,45 @@ public class BallsApp extends JPanel{
             }
         });
 
+        b2.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+
+
+            }
+        });
+
+        b3.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+
+
+            }
+        });
+
+        b4.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+
+
+            }
+        });
+
+        b5.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+
+
+            }
+        });
+
 
         this.add(pgs);
-        this.add(sgs);
-        this.add(sfs);
-        this.add(pfs);
-        this.add(centers);
         this.add(b1);
+        this.add(sgs);
+        this.add(b2);
+        this.add(sfs);
+        this.add(b3);
+        this.add(pfs);
+        this.add(b4);
+        this.add(centers);
+        this.add(b5);
 
 
     }
