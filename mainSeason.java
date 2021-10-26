@@ -20,10 +20,41 @@ public class mainSeason{
     public static ArrayList<Player> Trade(Team t2){
       ArrayList<Player> tradeP=myTeam.team;
       ArrayList<Player> t2P=t2.team;
+      ArrayList<Player> t2Trades=new ArrayList<Player>();
       String smallest=myTeam.getSmallestPosOverall();
       if(smallest.equals("center")){
          for(Player p: t2P){
-            
+            if(p instanceof Center){
+               t2Trades.add(p);
+            }
+         }
+      }
+      if(smallest.equals("pf")){
+         for(Player p: t2P){
+            if(p instanceof PF){
+               t2Trades.add(p);
+            }
+         }
+      }
+      if(smallest.equals("pg")){
+         for(Player p: t2P){
+            if(p instanceof PG){
+               t2Trades.add(p);
+            }
+         }
+      }
+      if(smallest.equals("sf")){
+         for(Player p: t2P){
+            if(p instanceof SF){
+               t2Trades.add(p);
+            }
+         }
+      }
+      if(smallest.equals("sg")){
+         for(Player p: t2P){
+            if(p instanceof SG){
+               t2Trades.add(p);
+            }
          }
       }
        return tradeP;
