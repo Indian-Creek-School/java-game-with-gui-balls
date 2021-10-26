@@ -2,6 +2,10 @@ import java.io.FileInputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Random {
+    public static String aids(){
+        String name="";
+        return name+" has aids";
+    }
     
     public static String newName(){
         String name="";
