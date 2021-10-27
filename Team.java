@@ -87,4 +87,12 @@ public class Team {
         average = (int)(sum/team.size()+0.5);
         return average;
     }
+
+    public String toString(){
+        String result = "";
+        for(int i = 0; i < team.size(); i++){
+            result = team.get(i).getName()+", "+team.get(i).getPos()+", "+team.get(i).getOverall() + "\n";
+        }
+        return result;
+    }
 }

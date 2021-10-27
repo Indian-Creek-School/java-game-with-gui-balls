@@ -75,7 +75,7 @@ public class BallsApp extends JPanel{
         this.setLayout(new GridLayout(6,2));
 
         //initializing JComboBoxes
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 8; i++){
             pgProspects.add(new PG());
             sgProspects.add(new SG());
             sfProspects.add(new SF());
@@ -180,8 +180,9 @@ public class BallsApp extends JPanel{
                     if(pgProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(pgProspects.get(j));
                         System.out.println(draftedTeam.toString());
+                        pgs.removeItem(pgProspects.get(j).getName()+", "+pgProspects.get(j).getPos()+", "+pgProspects.get(j).getOverall());
                         pgProspects.remove(j);
-                        pgs.removeItem();//needs to be fixed
+                        //needs to be fixed
                     }
                 }
                 // System.out.println(pgProspects.toString());
@@ -215,8 +216,8 @@ public class BallsApp extends JPanel{
                     if(sgProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(sgProspects.get(j));
                         System.out.println(draftedTeam.toString());
+                        sgs.removeItem(sgProspects.get(j).getName()+", "+sgProspects.get(j).getPos()+", "+sgProspects.get(j).getOverall());
                         sgProspects.remove(j);
-                        sgs.removeItem(sgNames[j]);
                     }
                 }
                 for(int k = 0; k < draftedTeam.size(); k++){
@@ -247,8 +248,8 @@ public class BallsApp extends JPanel{
                     if(sfProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(sfProspects.get(j));
                         System.out.println(draftedTeam.toString());
+                        sfs.removeItem(sfProspects.get(j).getName()+", "+sfProspects.get(j).getPos()+", "+sfProspects.get(j).getOverall());
                         sfProspects.remove(j);
-                        sfs.removeItem(sfNames[j]);
                     }
                 }
                 for(int k = 0; k < draftedTeam.size(); k++){
@@ -279,8 +280,8 @@ public class BallsApp extends JPanel{
                     if(pfProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(pfProspects.get(j));
                         System.out.println(draftedTeam.toString());
+                        pfs.removeItem(pfProspects.get(j).getName()+", "+pfProspects.get(j).getPos()+", "+pfProspects.get(j).getOverall());
                         pfProspects.remove(j);
-                        pfs.removeItem(pfNames[j]);
                     }
                 }
                 for(int k = 0; k < draftedTeam.size(); k++){
@@ -311,6 +312,7 @@ public class BallsApp extends JPanel{
                     if(centerProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(centerProspects.get(j));
                         System.out.println(draftedTeam.toString());
+                        centers.removeItem(centerProspects.get(j).getName()+", "+centerProspects.get(j).getPos()+", "+centerProspects.get(j).getOverall());
                         centerProspects.remove(j);
                         centers.removeItem(sfNames[j]);
                     }
@@ -334,7 +336,10 @@ public class BallsApp extends JPanel{
 
         b6.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-
+                removeAll();
+                setLayout(new GridLayout(1,1));
+                JLabel userTeam = new JLabel("Drafted Team");
+                userTeam.setText(draftedTeam.toString());
             }
         });
 
@@ -402,6 +407,5 @@ public class BallsApp extends JPanel{
        }
        System.out.println();
         setUp();
-
     }
 }
