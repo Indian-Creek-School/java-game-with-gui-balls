@@ -1,16 +1,20 @@
 
-    public class Benny{
-        private static int gamecount=0;
-        public static Team myTeam;
-         public static boolean winGame(Team t1, Team t2){
-            gamecount++;
-            Team home=t1;
-            Team away=t2;
-            if(home.getTeamOverall()>away.getTeamOverall()){
-                return true;
-            }
-            return true;
-         }
+    public class postSeason{
+        private int gamecount=0;
+        private Team team1;
+        private Team team2;
+        private Team team3;
+        private Team team4;
+        public postSeason(Team t1, Team t2,Team t3, Team t4){
+            team1=t1;
+            team2=t2;
+            team3=t3;
+            team4=t4;
+        }
+        public void series(){
+            
+        }
+
 }
 
 
