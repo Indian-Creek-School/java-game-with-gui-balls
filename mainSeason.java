@@ -82,8 +82,8 @@ public class mainSeason{
             }
          }
       }
-      tradeP.add(t1Trades.get(Random.getRandomInt(0, 2)));
-      tradeP.add(t2Trades.get(Random.getRandomInt(0, 2)));
+      tradeP.add(t1Trades.get(Random.getRandomInt(0, 4)));
+      tradeP.add(t2Trades.get(Random.getRandomInt(0, 4)));
        return tradeP;
     }
     
