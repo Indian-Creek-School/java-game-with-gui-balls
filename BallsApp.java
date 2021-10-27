@@ -36,6 +36,12 @@ public class BallsApp extends JPanel{
     private ArrayList<Player> simTeam3;
     private ArrayList<Player> simTeam4;
 
+    private Team team1;
+    private Team team2;
+    private Team team3;
+    private Team team4;
+
+
     //jcombo boxes for the dropdowns for the draft
     private JComboBox<String> pgs;
     private JComboBox<String> sgs;
@@ -146,6 +152,12 @@ public class BallsApp extends JPanel{
         output.setFont(font);
         output.setForeground(Color.BLACK);
 
+        //initializing teams
+        simTeam1 = new ArrayList<Player>();
+        simTeam2 = new ArrayList<Player>();
+        simTeam3 = new ArrayList<Player>();
+        simTeam4 = new ArrayList<Player>();
+
         /**
          * All the actions listeners: Gets the selected player, turn it into a string of the players name,
          * Finds player object that matches with that players name, adds it to the
@@ -180,36 +192,6 @@ public class BallsApp extends JPanel{
                 }
                 repaint();
 
-
-                // //adds best available shooting guard to team 1
-                // Player selectedSG = Player.highestOvrPlayer(sgProspects);
-                // simTeam1.add(selectedSG);
-                // sgProspects.remove(selectedSG);
-                // sgs.removeItem(selectedSG);
-
-                // //adds best available small forward to team 2
-                // Player selectedSF = Player.highestOvrPlayer(sfProspects);
-                // simTeam1.add(selectedSF);
-                // sfProspects.remove(selectedSF);
-                // sfs.removeItem(selectedSF);
-
-                // //adds best available power forward to team 3
-                // Player selectedPF = Player.highestOvrPlayer(pfProspects);
-                // simTeam1.add(selectedPF);
-                // sgProspects.remove(selectedPF);
-                // pfs.removeItem(selectedPF);
-
-                // //adds best available center to team 4
-                // Player selectedCenter = Player.highestOvrPlayer(centerProspects);
-                // simTeam1.add(selectedCenter);
-                // centerProspects.remove(selectedCenter);
-                // centers.removeItem(selectedCenter);
-
-
-                simTeam1 = new ArrayList<Player>();
-                simTeam2 = new ArrayList<Player>();
-                simTeam3 = new ArrayList<Player>();
-                simTeam4 = new ArrayList<Player>();
                 Player.addPlayerToTeam(sgProspects, simTeam1, sgs);
                 Player.addPlayerToTeam(sfProspects, simTeam2, sfs);
                 Player.addPlayerToTeam(pfProspects, simTeam3, pfs);
@@ -344,6 +326,11 @@ public class BallsApp extends JPanel{
                 Player.addPlayerToTeam(centerProspects, simTeam4, centers);
             }
         });
+
+        team1 = new Team(simTeam1);
+        team2 = new Team(simTeam2);
+        team3 = new Team(simTeam3);
+        team4 = new Team(simTeam4);
 
         b6.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){

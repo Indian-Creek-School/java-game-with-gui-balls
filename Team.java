@@ -6,6 +6,11 @@ public class Team {
     public Team(ArrayList<Player> t){
         team = t;
     }
+
+    public ArrayList<Player> getTeam(){
+        return team;
+    }
+
     public int getPosOverall(String pos){
         int total=0;
         int count=0;
