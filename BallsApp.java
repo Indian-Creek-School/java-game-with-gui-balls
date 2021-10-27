@@ -181,7 +181,7 @@ public class BallsApp extends JPanel{
                         draftedTeam.add(pgProspects.get(j));
                         System.out.println(draftedTeam.toString());
                         pgProspects.remove(j);
-                        pgs.removeItem(pgNames[j]);
+                        pgs.removeItem();//needs to be fixed
                     }
                 }
                 // System.out.println(pgProspects.toString());
