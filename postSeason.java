@@ -1,15 +1,18 @@
 
     public class postSeason{
         private int gamecount=0;
-        private Team myTeam;
+        private Team team1;
         private Team team2;
         private Team team3;
         private Team team4;
         public postSeason(Team t1, Team t2,Team t3, Team t4){
-            myTeam=t1;
+            team1=t1;
             team2=t2;
             team3=t3;
             team4=t4;
+        }
+        public void series(){
+            
         }
 
 }
