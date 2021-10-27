@@ -389,7 +389,31 @@ public class BallsApp extends JPanel{
         // System.out.println(System.getProperty("user.dir"));
         // mainSeason m=new mainSeason();
         // m.SoundClipTest();
-
+         ArrayList<PG> pgProspects=new ArrayList<PG>();
+         ArrayList<SG> sgProspects=new ArrayList<SG>();
+         ArrayList<SF> sfProspects=new ArrayList<SF>();
+         ArrayList<PF> pfProspects=new ArrayList<PF>();
+         ArrayList<Center> centerProspects=new ArrayList<Center>();
+        for(int i = 0; i < 5; i++){
+            pgProspects.add(new PG());
+            sgProspects.add(new SG());
+            sfProspects.add(new SF());
+            pfProspects.add(new PF());
+            centerProspects.add(new Center());
+        }
+        ArrayList<PG> pgProspects2=new ArrayList<PG>();
+        ArrayList<SG> sgProspects2=new ArrayList<SG>();
+        ArrayList<SF> sfProspects2=new ArrayList<SF>();
+        ArrayList<PF> pfProspects2=new ArrayList<PF>();
+        ArrayList<Center> centerProspects2=new ArrayList<Center>();
+       for(int i = 0; i < 5; i++){
+           pgProspects2.add(new PG());
+           sgProspects2.add(new SG());
+           sfProspects2.add(new SF());
+           pfProspects2.add(new PF());
+           centerProspects2.add(new Center());
+       }
+       System.out.println();
         setUp();
 
     }
