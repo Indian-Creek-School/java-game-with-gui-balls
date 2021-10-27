@@ -48,10 +48,9 @@ public abstract class Player {
     }
 
     public static Player highestOvrPlayer(ArrayList<Player> arr) {
-        int highOvr = 0;
-        for(int j = 1; j < arr.size(); j++){
-            highOvr = arr.get(0).getOverall();
-            int currOvr = arr.get(j).getOverall();
+        int highOvr = arr.get(0).getOverall();
+        for(int j = 0; j < arr.size() - 1; j++){
+            int currOvr = arr.get(j+1).getOverall();
             if(currOvr >= highOvr) {
                 highOvr = currOvr;
             }

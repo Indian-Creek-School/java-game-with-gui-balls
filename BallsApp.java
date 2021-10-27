@@ -336,10 +336,10 @@ public class BallsApp extends JPanel{
 
         b6.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                removeAll();
                 setLayout(new GridLayout(1,1));
                 JLabel userTeam = new JLabel("Drafted Team");
                 userTeam.setText(draftedTeam.toString());
+                add(userTeam);
             }
         });
 
