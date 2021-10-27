@@ -224,7 +224,7 @@ public class BallsApp extends JPanel{
                 }
                 repaint();
 
-                Player.addPlayerToTeam(sgProspects, simTeam4, sgs);
+                Player.addPlayerToTeam(pgProspects, simTeam4, pgs);
                 Player.addPlayerToTeam(sfProspects, simTeam1, sfs);
                 Player.addPlayerToTeam(pfProspects, simTeam2, pfs);
                 Player.addPlayerToTeam(centerProspects, simTeam3, centers);
@@ -257,7 +257,7 @@ public class BallsApp extends JPanel{
                 repaint();
 
                 Player.addPlayerToTeam(sgProspects, simTeam3, sgs);
-                Player.addPlayerToTeam(sfProspects, simTeam4, sfs);
+                Player.addPlayerToTeam(sfProspects, simTeam4, pgs);
                 Player.addPlayerToTeam(pfProspects, simTeam1, pfs);
                 Player.addPlayerToTeam(centerProspects, simTeam2, centers);
             }
@@ -290,7 +290,7 @@ public class BallsApp extends JPanel{
 
                 Player.addPlayerToTeam(sgProspects, simTeam2, sgs);
                 Player.addPlayerToTeam(sfProspects, simTeam3, sfs);
-                Player.addPlayerToTeam(pfProspects, simTeam4, pfs);
+                Player.addPlayerToTeam(pfProspects, simTeam4, pgs);
                 Player.addPlayerToTeam(centerProspects, simTeam1, centers);
             }
         });
@@ -323,7 +323,7 @@ public class BallsApp extends JPanel{
                 Player.addPlayerToTeam(sgProspects, simTeam1, sgs);
                 Player.addPlayerToTeam(sfProspects, simTeam2, sfs);
                 Player.addPlayerToTeam(pfProspects, simTeam3, pfs);
-                Player.addPlayerToTeam(centerProspects, simTeam4, centers);
+                Player.addPlayerToTeam(centerProspects, simTeam4, pgs);
             }
         });
 
