@@ -9,8 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import org.xml.sax.SAXNotRecognizedException;
-
 // import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -27,11 +25,11 @@ public class BallsApp extends JPanel{
     //main class that will run
 
     //array lists for each of the players we are going to make
-    private ArrayList<PG> pgProspects;
-    private ArrayList<SG> sgProspects;
-    private ArrayList<SF> sfProspects;
-    private ArrayList<PF> pfProspects;
-    private ArrayList<Center> centerProspects;
+    private ArrayList<Player> pgProspects;
+    private ArrayList<Player> sgProspects;
+    private ArrayList<Player> sfProspects;
+    private ArrayList<Player> pfProspects;
+    private ArrayList<Player> centerProspects;
     private ArrayList<Player> draftedTeam;
     private ArrayList<Player> simTeam1;
     private ArrayList<Player> simTeam2;
@@ -61,11 +59,11 @@ public class BallsApp extends JPanel{
 
     public BallsApp(){
 
-        pgProspects = new ArrayList<PG>();
-        sgProspects = new ArrayList<SG>();
-        sfProspects = new ArrayList<SF>();
-        pfProspects = new ArrayList<PF>();
-        centerProspects = new ArrayList<Center>();
+        pgProspects = new ArrayList<Player>();
+        sgProspects = new ArrayList<Player>();
+        sfProspects = new ArrayList<Player>();
+        pfProspects = new ArrayList<Player>();
+        centerProspects = new ArrayList<Player>();
 
         //setting a JFrame
         this.setLayout(new GridLayout(6,2));
@@ -181,6 +179,41 @@ public class BallsApp extends JPanel{
                     output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
                 }
                 repaint();
+
+
+                // //adds best available shooting guard to team 1
+                // Player selectedSG = Player.highestOvrPlayer(sgProspects);
+                // simTeam1.add(selectedSG);
+                // sgProspects.remove(selectedSG);
+                // sgs.removeItem(selectedSG);
+
+                // //adds best available small forward to team 2
+                // Player selectedSF = Player.highestOvrPlayer(sfProspects);
+                // simTeam1.add(selectedSF);
+                // sfProspects.remove(selectedSF);
+                // sfs.removeItem(selectedSF);
+
+                // //adds best available power forward to team 3
+                // Player selectedPF = Player.highestOvrPlayer(pfProspects);
+                // simTeam1.add(selectedPF);
+                // sgProspects.remove(selectedPF);
+                // pfs.removeItem(selectedPF);
+
+                // //adds best available center to team 4
+                // Player selectedCenter = Player.highestOvrPlayer(centerProspects);
+                // simTeam1.add(selectedCenter);
+                // centerProspects.remove(selectedCenter);
+                // centers.removeItem(selectedCenter);
+
+
+                simTeam1 = new ArrayList<Player>();
+                simTeam2 = new ArrayList<Player>();
+                simTeam3 = new ArrayList<Player>();
+                simTeam4 = new ArrayList<Player>();
+                Player.addPlayerToTeam(sgProspects, simTeam1, sgs);
+                Player.addPlayerToTeam(sfProspects, simTeam2, sfs);
+                Player.addPlayerToTeam(pfProspects, simTeam3, pfs);
+                Player.addPlayerToTeam(centerProspects, simTeam4, centers);
             }
         });
 
@@ -208,6 +241,11 @@ public class BallsApp extends JPanel{
                     output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
                 }
                 repaint();
+
+                Player.addPlayerToTeam(sgProspects, simTeam4, sgs);
+                Player.addPlayerToTeam(sfProspects, simTeam1, sfs);
+                Player.addPlayerToTeam(pfProspects, simTeam2, pfs);
+                Player.addPlayerToTeam(centerProspects, simTeam3, centers);
             }
         });
 
@@ -235,6 +273,11 @@ public class BallsApp extends JPanel{
                     output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
                 }
                 repaint();
+
+                Player.addPlayerToTeam(sgProspects, simTeam3, sgs);
+                Player.addPlayerToTeam(sfProspects, simTeam4, sfs);
+                Player.addPlayerToTeam(pfProspects, simTeam1, pfs);
+                Player.addPlayerToTeam(centerProspects, simTeam2, centers);
             }
         });
 
@@ -262,6 +305,11 @@ public class BallsApp extends JPanel{
                     output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
                 }
                 repaint();
+
+                Player.addPlayerToTeam(sgProspects, simTeam2, sgs);
+                Player.addPlayerToTeam(sfProspects, simTeam3, sfs);
+                Player.addPlayerToTeam(pfProspects, simTeam4, pfs);
+                Player.addPlayerToTeam(centerProspects, simTeam1, centers);
             }
         });
 
@@ -289,6 +337,17 @@ public class BallsApp extends JPanel{
                     output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
                 }
                 repaint();
+
+                Player.addPlayerToTeam(sgProspects, simTeam1, sgs);
+                Player.addPlayerToTeam(sfProspects, simTeam2, sfs);
+                Player.addPlayerToTeam(pfProspects, simTeam3, pfs);
+                Player.addPlayerToTeam(centerProspects, simTeam4, centers);
+            }
+        });
+
+        b6.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+
             }
         });
 
