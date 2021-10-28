@@ -38,15 +38,17 @@ public class mainSeason{
       Player tradingFor = teamTradingWith.team.get(indexOfPlayerTradingFor);
       return tradingFor;
    }
+
+   //add random players in the GUI class rather than here.
    
-   public static int trade(Team t, Boolean wantsTrade, Team t1, Team t2, Team t3, Team t4) {
-      Player worst = myTeam.getWorstPlayer();
+   public static int trade(Boolean wantsTrade, Team t1, Team t2, Team t3, Team t4) {
+      Player playerTrading = myTeam.team.get((int)(Math.random()*7));
       Player tradingFor = getPlayerTradingFor(t1, t2, t3, t4);
       int indexOfPlayerTradingFor = t.team.indexOf(tradingFor);
       int indexOfWorstPlayer = myTeam.team.indexOf(myTeam.getWorstPlayer());
       if(wantsTrade) {
          myTeam.team.set(indexOfWorstPlayer, tradingFor);
-         t.team.set(indexOfPlayerTradingFor, worst);
+         t.team.set(indexOfPlayerTradingFor, playerTrading);
          if(indexOfPlayerTradingFor > indexOfWorstPlayer){
             return (int)(Math.random()*5+1);
          } else if(indexOfPlayerTradingFor > indexOfWorstPlayer) {
@@ -63,9 +65,7 @@ public class mainSeason{
             return 0;
          }
       }
-
       return 0;
-
    }
     
     public void SoundClipTest() {
