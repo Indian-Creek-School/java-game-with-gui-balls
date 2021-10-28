@@ -52,31 +52,19 @@ public class Team {
         }
         return total/count;
     }
-    public String getSmallestPosOverall(){
-        int centerOv=getPosOverall("center");
-        int pfOv=getPosOverall("pf");
-        int pgOv=getPosOverall("pg");
-        int sfOv=getPosOverall("sf");
-        int sgOv=getPosOverall("sg");
-        int smallest=centerOv;
-        int[] posOv={centerOv,pfOv,pgOv,sfOv,sgOv};
-        for(int i:posOv){
-            if(smallest<i){
-               smallest=i;
+    public Player getWorstPlayer() { 
+        ArrayList<Player> test = team;
+        int worstOvr = team.get(0).getOverall();
+        Player worstPlayer = team.get(0);
+        for(int i = 0; i < test.size(); i++){
+            if(team.get(i).getOverall() < worstOvr){
+                worstOvr = team.get(i).getOverall();
+                worstPlayer = team.get(i);
             }
-         }
-         if(smallest==centerOv){
-             return "center";
-         }else if(smallest==pfOv){
-             return "pf";
-         }else if(smallest==pgOv){
-             return "pg";
-         }else if(smallest==sfOv){
-             return "sf";
-         }else if(smallest==sgOv){
-             return "sg";
-         }
-        return "";
+        }
+
+        return worstPlayer;
+
     }
     public int getTeamOverall(){ //returns team overall
         int sum = 0;

@@ -14,78 +14,59 @@ public class mainSeason{
        }
        return true;
     }
-    public static ArrayList<Player> Trade(Team t2){
-      ArrayList<Player> tradeP = new ArrayList<Player>();
-      ArrayList<Player> t2P = t2.team;
-      ArrayList<Player> t2Trades=new ArrayList<Player>();
-      ArrayList<Player> t1Trades=new ArrayList<Player>();
-      String smallest=myTeam.getSmallestPosOverall();
 
-      if(smallest.equals("center")){
-         for(Player p:myTeam.team){
-            if(p instanceof Center){
-               t1Trades.add(p);
-            }
+   public static Team generateRandomTeam(Team t1, Team t2, Team t3, Team t4){
+      int teamTradingWith = (int)(Math.random()*(4)+1.5);
+      if(teamTradingWith == 1){
+         return t1;
+      }
+      if(teamTradingWith == 2){
+         return t2;
+      }
+      if(teamTradingWith == 3){
+         return t3;
+      }
+      if(teamTradingWith == 4){
+         return t4;
+      }
+      return null;
+   }
+
+   public static Player getPlayerTradingFor(Team t1, Team t2, Team t3, Team t4) {
+      int indexOfPlayerTradingFor = (int)(Math.random()*(7));
+      Team teamTradingWith = generateRandomTeam(t1, t2, t3, t4);
+      Player tradingFor = teamTradingWith.team.get(indexOfPlayerTradingFor);
+      return tradingFor;
+   }
+   
+   public static int trade(Team t, Boolean wantsTrade, Team t1, Team t2, Team t3, Team t4) {
+      Player worst = myTeam.getWorstPlayer();
+      Player tradingFor = getPlayerTradingFor(t1, t2, t3, t4);
+      int indexOfPlayerTradingFor = t.team.indexOf(tradingFor);
+      int indexOfWorstPlayer = myTeam.team.indexOf(myTeam.getWorstPlayer());
+      if(wantsTrade) {
+         myTeam.team.set(indexOfWorstPlayer, tradingFor);
+         t.team.set(indexOfPlayerTradingFor, worst);
+         if(indexOfPlayerTradingFor > indexOfWorstPlayer){
+            return (int)(Math.random()*5+1);
+         } else if(indexOfPlayerTradingFor > indexOfWorstPlayer) {
+            return -1*(int)(Math.random()*5+1);
+         } else if(indexOfPlayerTradingFor == indexOfWorstPlayer){
+            return 0;
          }
-         for(Player p: t2P){
-            if(p instanceof Center){
-               t2Trades.add(p);
-            }
+      } else {
+         if(indexOfPlayerTradingFor > indexOfWorstPlayer){
+            return -1*(int)(Math.random()*5+1);
+         } else if(indexOfPlayerTradingFor > indexOfWorstPlayer) {
+            return (int)(Math.random()*5+1);
+         } else if(indexOfPlayerTradingFor == indexOfWorstPlayer){
+            return 0;
          }
       }
-      if(smallest.equals("pf")){
-         for(Player p:myTeam.team){
-            if(p instanceof PF){
-               t1Trades.add(p);
-            }
-         }
-         for(Player p: t2P){
-            if(p instanceof PF){
-               t2Trades.add(p);
-            }
-         }
-      }
-      if(smallest.equals("pg")){
-         for(Player p:myTeam.team){
-            if(p instanceof PG){
-               t1Trades.add(p);
-            }
-         }
-         for(Player p: t2P){
-            if(p instanceof PG){
-               t2Trades.add(p);
-            }
-         }
-      }
-      if(smallest.equals("sf")){
-         for(Player p:myTeam.team){
-            if(p instanceof SF){
-               t1Trades.add(p);
-            }
-         }
-         for(Player p: t2P){
-            if(p instanceof SF){
-               t2Trades.add(p);
-               
-            }
-         }
-      }
-      if(smallest.equals("sg")){
-         for(Player p:myTeam.team){
-            if(p instanceof SG){
-               t1Trades.add(p);
-            }
-         }
-         for(Player p: t2P){
-            if(p instanceof SG){
-               t2Trades.add(p);
-            }
-         }
-      }
-      tradeP.add(t1Trades.get(Random.getRandomInt(0, 4)));
-      tradeP.add(t2Trades.get(Random.getRandomInt(0, 4)));
-       return tradeP;
-    }
+
+      return 0;
+
+   }
     
     public void SoundClipTest() {
   
