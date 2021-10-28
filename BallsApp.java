@@ -8,7 +8,7 @@ import javax.swing.JButton;
 // import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-
+import javax.swing.SwingConstants;
 // import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -24,22 +24,25 @@ import java.awt.GridLayout;
 public class BallsApp extends JPanel{
     //main class that will run
 
-    //array lists for each of the players we are going to make
+    //array lists which separates prospect players to be drafted by position
     private ArrayList<Player> pgProspects;
     private ArrayList<Player> sgProspects;
     private ArrayList<Player> sfProspects;
     private ArrayList<Player> pfProspects;
     private ArrayList<Player> centerProspects;
+    //arraylist of players which will hold each teams drafted players
     private ArrayList<Player> draftedTeam;
     private ArrayList<Player> simTeam1;
     private ArrayList<Player> simTeam2;
     private ArrayList<Player> simTeam3;
     private ArrayList<Player> simTeam4;
 
+    //teams to be used. Will have arraylist corresponding to one above.
     private Team team1;
     private Team team2;
     private Team team3;
     private Team team4;
+    private Team userTeam;
 
 
     //jcombo boxes for the dropdowns for the draft
@@ -65,6 +68,7 @@ public class BallsApp extends JPanel{
 
     public BallsApp(){
 
+        //declaring arraylists which hold prospect players to be drafted
         pgProspects = new ArrayList<Player>();
         sgProspects = new ArrayList<Player>();
         sfProspects = new ArrayList<Player>();
@@ -72,9 +76,11 @@ public class BallsApp extends JPanel{
         centerProspects = new ArrayList<Player>();
 
         //setting a JFrame
-        this.setLayout(new GridLayout(6,2));
+        GridLayout gridLayout = new GridLayout(6,2);
+        this.setLayout(gridLayout);
 
-        //initializing JComboBoxes
+        //initializing arraylists of prospect players by adding 8 of each correct type to
+        //corresponding arraylist
         for(int i = 0; i < 8; i++){
             pgProspects.add(new PG());
             sgProspects.add(new SG());
@@ -88,35 +94,31 @@ public class BallsApp extends JPanel{
         for(int i = 0; i < pgProspects.size(); i++){
             pgNames[i] = pgProspects.get(i).toString() + ", " + pgProspects.get(i).getPos() + ", " + pgProspects.get(i).getOverall();
         }
-
         String[] sgNames = new String[pgProspects.size()];
         for(int i = 0; i < sgProspects.size(); i++){
             sgNames[i] = sgProspects.get(i).toString() + ", " + sgProspects.get(i).getPos() + ", " + sgProspects.get(i).getOverall();
         }
-
         String[] sfNames = new String[sfProspects.size()];
         for(int i = 0; i < sfProspects.size(); i++){
             sfNames[i] = sfProspects.get(i).toString() + ", " + sfProspects.get(i).getPos() + ", " + sfProspects.get(i).getOverall();
         }
-
         String[] pfNames = new String[pfProspects.size()];
         for(int i = 0; i < pfProspects.size(); i++){
             pfNames[i] = pfProspects.get(i).toString() + ", " + pfProspects.get(i).getPos() + ", " + pfProspects.get(i).getOverall();
         }
-
         String[] centerNames = new String[centerProspects.size()];
         for(int i = 0; i < centerProspects.size(); i++){
             centerNames[i] = centerProspects.get(i).toString() + ", " + centerProspects.get(i).getPos() + ", " + centerProspects.get(i).getOverall();
         }
 
-        //initializing JComboBoxes
+        //initializing JComboBoxes for draft
         pgs = new JComboBox<String>(pgNames);
         sgs = new JComboBox<String>(sgNames);
         sfs = new JComboBox<String>(sfNames);
         pfs = new JComboBox<String>(pfNames);
         centers = new JComboBox<String>(centerNames);
 
-        //initializing the draft buttons
+        //initializing the draft buttons for draft
         b1 = new JButton("Draft PG");
         b1.setVerticalTextPosition(AbstractButton.CENTER);
         b1.setHorizontalTextPosition(AbstractButton.LEADING); 
@@ -141,18 +143,32 @@ public class BallsApp extends JPanel{
         b6.setVerticalTextPosition(AbstractButton.CENTER);
         b6.setHorizontalTextPosition(AbstractButton.LEADING); 
 
-
-        //intializing user drafted arraylist
-        draftedTeam = new ArrayList<Player>();
+        //adding elements to grid layout
+        this.add(pgs);
+        this.add(b1);
+        this.add(sgs);
+        this.add(b2);
+        this.add(sfs);
+        this.add(b3);
+        this.add(pfs);
+        this.add(b4);
+        this.add(centers);
+        this.add(b5);
 
         //JLabel that will display team as it gets drafted
         output = new JLabel("Team");
-        output.setText(draftedTeam.toString());
         Font font = new Font("Times New Roman", Font.BOLD, 12);
         output.setFont(font);
         output.setForeground(Color.BLACK);
 
-        //initializing teams
+        //adds jlabel followed by continue button to the layout
+        this.add(output);
+        this.add(b6);
+
+        //intializing user drafted arraylist
+        draftedTeam = new ArrayList<Player>();
+
+        //initializing simulated teams (teams user does not draft)
         simTeam1 = new ArrayList<Player>();
         simTeam2 = new ArrayList<Player>();
         simTeam3 = new ArrayList<Player>();
@@ -166,33 +182,35 @@ public class BallsApp extends JPanel{
 
         b1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                //gets player selected by user in the dropdown
                 String playerSelected = pgs.getSelectedItem().toString();
-                // System.out.println(playerSelected);
+                //isolates players name to be used to get the actual player object
                 String playerName = "";
                 int i = 0;
                 while(!(playerSelected.charAt(i) == ',')){
                     playerName += playerSelected.charAt(i);
                     i++;
                 }
-                // System.out.println(playerName);
 
+                //finding the actual player object given its name
                 for(int j = 0; j < pgProspects.size(); j++){
                     if(pgProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(pgProspects.get(j));
                         System.out.println(draftedTeam.toString());
                         pgs.removeItem(pgProspects.get(j).getName()+", "+pgProspects.get(j).getPos()+", "+pgProspects.get(j).getOverall());
                         pgProspects.remove(j);
-                        //needs to be fixed
                     }
                 }
-                // System.out.println(pgProspects.toString());
 
-                //updating text:
+                //updating text displaying team:
                 for(int k = 0; k < draftedTeam.size(); k++){
-                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                    String result = "";
+                    result += draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall() + "\n";
+                    output.setText(result);
                 }
                 repaint();
 
+                //adding best overall players in other 4 positions to the sim teams
                 Player.addPlayerToTeam(sgProspects, simTeam1, sgs);
                 Player.addPlayerToTeam(sfProspects, simTeam2, sfs);
                 Player.addPlayerToTeam(pfProspects, simTeam3, pfs);
@@ -202,16 +220,17 @@ public class BallsApp extends JPanel{
 
         b2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                //gets player selected by user in the dropdown
                 String playerSelected = sgs.getSelectedItem().toString();
-                // System.out.println(playerSelected);
+                //isolates players name to be used to get the actual player object
                 String playerName = "";
                 int i = 0;
                 while(!(playerSelected.charAt(i) == ',')){
                     playerName += playerSelected.charAt(i);
                     i++;
                 }
-                // System.out.println(playerName);
 
+                //finding the actual player object given its name
                 for(int j = 0; j < sgProspects.size(); j++){
                     if(sgProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(sgProspects.get(j));
@@ -220,30 +239,36 @@ public class BallsApp extends JPanel{
                         sgProspects.remove(j);
                     }
                 }
+
+                //updating text displaying team:
                 for(int k = 0; k < draftedTeam.size(); k++){
-                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                    String result = "";
+                    result += draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall() + "\n";
+                    output.setText(result);
                 }
                 repaint();
 
-                Player.addPlayerToTeam(pgProspects, simTeam4, pgs);
-                Player.addPlayerToTeam(sfProspects, simTeam1, sfs);
-                Player.addPlayerToTeam(pfProspects, simTeam2, pfs);
-                Player.addPlayerToTeam(centerProspects, simTeam3, centers);
+                //adding best overall players in other 4 positions to the sim teams
+                Player.addPlayerToTeam(centerProspects, simTeam1, centers);
+                Player.addPlayerToTeam(pgProspects, simTeam2, pgs);
+                Player.addPlayerToTeam(sfProspects, simTeam3, sfs);
+                Player.addPlayerToTeam(pfProspects, simTeam4, pfs);
             }
         });
 
         b3.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                //gets player selected by user in the dropdown
                 String playerSelected = sfs.getSelectedItem().toString();
-                // System.out.println(playerSelected);
+                //isolates players name to be used to get the actual player object
                 String playerName = "";
                 int i = 0;
                 while(!(playerSelected.charAt(i) == ',')){
                     playerName += playerSelected.charAt(i);
                     i++;
                 }
-                // System.out.println(playerName);
 
+                //finding the actual player object given its name
                 for(int j = 0; j < sfProspects.size(); j++){
                     if(sfProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(sfProspects.get(j));
@@ -252,30 +277,36 @@ public class BallsApp extends JPanel{
                         sfProspects.remove(j);
                     }
                 }
+
+                //updating text displaying team:
                 for(int k = 0; k < draftedTeam.size(); k++){
-                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                    String result = "";
+                    result += draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall() + "\n";
+                    output.setText(result);
                 }
                 repaint();
 
-                Player.addPlayerToTeam(sgProspects, simTeam3, sgs);
-                Player.addPlayerToTeam(pgProspects, simTeam4, pgs);
+                //adding best overall players in other 4 positions to the sim teams
                 Player.addPlayerToTeam(pfProspects, simTeam1, pfs);
                 Player.addPlayerToTeam(centerProspects, simTeam2, centers);
+                Player.addPlayerToTeam(pgProspects, simTeam3, pgs);
+                Player.addPlayerToTeam(sgProspects, simTeam4, sgs);
             }
         });
 
         b4.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                //gets player selected by user in the dropdown
                 String playerSelected = pfs.getSelectedItem().toString();
-                // System.out.println(playerSelected);
+                //isolates players name to be used to get the actual player object
                 String playerName = "";
                 int i = 0;
                 while(!(playerSelected.charAt(i) == ',')){
                     playerName += playerSelected.charAt(i);
                     i++;
                 }
-                // System.out.println(playerName);
 
+                //finding the actual player object given its name                
                 for(int j = 0; j < pfProspects.size(); j++){
                     if(pfProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(pfProspects.get(j));
@@ -284,30 +315,36 @@ public class BallsApp extends JPanel{
                         pfProspects.remove(j);
                     }
                 }
+
+                //updating text displaying team:
                 for(int k = 0; k < draftedTeam.size(); k++){
-                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                    String result = "";
+                    result += draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall() + "\n";
+                    output.setText(result);
                 }
                 repaint();
 
+                //adding best overall players in other 4 positions to the sim teams
+                Player.addPlayerToTeam(sfProspects, simTeam1, sfs);
                 Player.addPlayerToTeam(sgProspects, simTeam2, sgs);
-                Player.addPlayerToTeam(sfProspects, simTeam3, sfs);
+                Player.addPlayerToTeam(centerProspects, simTeam3, centers);
                 Player.addPlayerToTeam(pgProspects, simTeam4, pgs);
-                Player.addPlayerToTeam(centerProspects, simTeam1, centers);
             }
         });
 
         b5.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                //gets player selected by user in the dropdown
                 String playerSelected = centers.getSelectedItem().toString();
-                // System.out.println(playerSelected);
+                //isolates players name to be used to get the actual player object
                 String playerName = "";
                 int i = 0;
                 while(!(playerSelected.charAt(i) == ',')){
                     playerName += playerSelected.charAt(i);
                     i++;
                 }
-                // System.out.println(playerName);
 
+                //finding the actual player object given its name
                 for(int j = 0; j < centerProspects.size(); j++){
                     if(centerProspects.get(j).getName().equals(playerName)){
                         draftedTeam.add(centerProspects.get(j));
@@ -317,47 +354,94 @@ public class BallsApp extends JPanel{
                         centers.removeItem(sfNames[j]);
                     }
                 }
+
+                //updating text displaying team:
                 for(int k = 0; k < draftedTeam.size(); k++){
-                    output.setText(draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall());
+                    String result = "";
+                    result += draftedTeam.get(k).toString()+", "+draftedTeam.get(k).getPos()+", "+draftedTeam.get(k).getOverall() + "\n";
+                    output.setText(result);
                 }
                 repaint();
 
-                Player.addPlayerToTeam(sgProspects, simTeam1, sgs);
-                Player.addPlayerToTeam(sfProspects, simTeam2, sfs);
-                Player.addPlayerToTeam(pfProspects, simTeam3, pfs);
-                Player.addPlayerToTeam(pgProspects, simTeam4, pgs);
+                //adding best overall players in other 4 positions to the sim teams
+                Player.addPlayerToTeam(pfProspects, simTeam1, pfs);
+                Player.addPlayerToTeam(pgProspects, simTeam2, pgs);
+                Player.addPlayerToTeam(sgProspects, simTeam3, sgs);
+                Player.addPlayerToTeam(sfProspects, simTeam4, sfs);
             }
         });
 
+        //creates the teams to be used in regular season based on arraylist made during draft
+        userTeam = new Team(draftedTeam);
         team1 = new Team(simTeam1);
         team2 = new Team(simTeam2);
         team3 = new Team(simTeam3);
         team4 = new Team(simTeam4);
 
+        /**removes all items, sets new layout,
+         * displays all teams drafted on a new screen.
+         */
         b6.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                setLayout(new GridLayout(1,1));
-                JLabel userTeam = new JLabel("Drafted Team");
-                userTeam.setText(draftedTeam.toString());
-                add(userTeam);
+                //defines new font
+                Font font = new Font("Times New Roman", Font.BOLD, 15);
+
+                //resets JFrame to remove all elements
+                removeAll();
+                validate();
+                repaint();
+
+                //redefines new gridlayout to display all teams
+                setLayout(new GridLayout(1,5));
+
+                //makes label that displays users team
+                JLabel draftTeam = new JLabel("Drafted Team");
+                draftTeam.setText("<html>" + "Your Team: " + "<br/>" + userTeam.toString());
+                draftTeam.setForeground(Color.white);
+                draftTeam.setFont(font);
+                draftTeam.setVerticalAlignment(SwingConstants.CENTER);
+                draftTeam.setHorizontalAlignment(SwingConstants.CENTER);
+                add(draftTeam);
+
+                //makes label that display sim team 1
+                JLabel t1 = new JLabel("Severn Titanics");
+                t1.setText("<html>" + "Severn Titanics: " + "<br/>" + team1.toString());
+                t1.setForeground(Color.white);
+                t1.setFont(font);
+                t1.setHorizontalAlignment(SwingConstants.CENTER);
+                t1.setVerticalAlignment(SwingConstants.CENTER);
+                add(t1);
+
+                //makes label that display sim team 2
+                JLabel t2 = new JLabel("Indian Creek Eagles");
+                t2.setText("<html>" + "Indian Creek Eagles: " + "<br/>" + team2.toString());
+                t2.setForeground(Color.white);
+                t2.setFont(font);
+                t2.setHorizontalAlignment(SwingConstants.CENTER);
+                t2.setVerticalAlignment(SwingConstants.CENTER);
+                add(t2);
+
+                //makes label that display sim team 3
+                JLabel t3 = new JLabel("Key Submarines");
+                t3.setText("<html>" + "Key Submarines: " + "<br/>" + team3.toString());
+                t3.setFont(font);
+                t3.setForeground(Color.white);
+                t3.setHorizontalAlignment(SwingConstants.CENTER);
+                t3.setVerticalAlignment(SwingConstants.CENTER);
+                add(t3);
+
+                //makes label that display sim team 4
+                JLabel t4 = new JLabel("Saint Mary Devils");
+                t4.setText("<html>" + "Saint Mary Devils: " + "<br/>" + team4.toString());
+                t4.setFont(font);
+                t4.setForeground(Color.white);
+                t4.setHorizontalAlignment(SwingConstants.CENTER);
+                t4.setVerticalAlignment(SwingConstants.CENTER);
+                add(t4);
+                validate();
+                repaint();
             }
         });
-
-        //adding elements to grid layout
-        this.add(pgs);
-        this.add(b1);
-        this.add(sgs);
-        this.add(b2);
-        this.add(sfs);
-        this.add(b3);
-        this.add(pfs);
-        this.add(b4);
-        this.add(centers);
-        this.add(b5);
-        this.add(output);
-        this.add(b6);
-        repaint();
-
     }
 
     public static void setUp(){

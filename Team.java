@@ -91,8 +91,8 @@ public class Team {
     public String toString(){
         String result = "";
         for(int i = 0; i < team.size(); i++){
-            result = team.get(i).getName()+", "+team.get(i).getPos()+", "+team.get(i).getOverall() + "\n";
+            result += team.get(i).getName()+", "+team.get(i).getPos()+", "+team.get(i).getOverall() + "<br/>";
         }
-        return result;
+        return "<html> "+ result;
     }
 }
