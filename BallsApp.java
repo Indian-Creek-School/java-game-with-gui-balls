@@ -364,8 +364,8 @@ public class BallsApp extends JPanel{
                 repaint();
 
                 //adding best overall players in other 4 positions to the sim teams
-                Player.addPlayerToTeam(pfProspects, simTeam1, pfs);
-                Player.addPlayerToTeam(pgProspects, simTeam2, pgs);
+                Player.addPlayerToTeam(pgProspects, simTeam1, pgs);
+                Player.addPlayerToTeam(pfProspects, simTeam2, pfs);
                 Player.addPlayerToTeam(sgProspects, simTeam3, sgs);
                 Player.addPlayerToTeam(sfProspects, simTeam4, sfs);
             }
