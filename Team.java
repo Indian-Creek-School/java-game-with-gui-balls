@@ -2,13 +2,29 @@ import java.util.ArrayList;
 
 public class Team {
     public ArrayList<Player> team;
+    public int wins;
+    public int losses;
 
     public Team(ArrayList<Player> t){
         team = t;
+        wins = 0;
+        losses = 0;
     }
 
     public ArrayList<Player> getTeam(){
         return team;
+    }
+
+    public int getWins(){
+        return wins;
+    }
+
+    public int getLosses(){
+        return losses;
+    }
+
+    public String getRecord(){
+        return Integer.toString(wins) + "-" + Integer.toString(losses);
     }
 
     public int getPosOverall(String pos){

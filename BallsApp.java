@@ -59,8 +59,9 @@ public class BallsApp extends JPanel{
     public JButton b4;
     public JButton b5;
 
-    //continue button
+    //continue buttons
     public JButton b6;
+    public JButton b7;
 
     //JLabel for showing team:
     public JLabel output;
@@ -142,6 +143,10 @@ public class BallsApp extends JPanel{
         b6 = new JButton("Continue");
         b6.setVerticalTextPosition(AbstractButton.CENTER);
         b6.setHorizontalTextPosition(AbstractButton.LEADING); 
+
+        b7 = new JButton("Start Regular Season!");
+        b7.setVerticalTextPosition(AbstractButton.CENTER);
+        b7.setHorizontalTextPosition(AbstractButton.LEADING); 
 
         //adding elements to grid layout
         this.add(pgs);
@@ -440,6 +445,61 @@ public class BallsApp extends JPanel{
                 add(t4);
                 validate();
                 repaint();
+
+                //adds continue to regular season button
+                add(b7);
+            }
+        });
+
+        //continue to regular season button
+        b7.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                //resets JFrame to remove all elements
+                removeAll();
+                validate();
+                repaint();
+
+                //redefines new gridlayout to display all teams
+                setLayout(new GridLayout(1,5));
+
+                //makes new JLabel to display users record
+                JLabel record = new JLabel("record");
+                record.setFont(font);
+                record.setForeground(Color.white);
+                record.setHorizontalAlignment(SwingConstants.CENTER);
+                record.setVerticalAlignment(SwingConstants.CENTER);
+                add(record);
+                validate();
+                repaint();
+
+                //making array list of all teams they are going to play to iterate through
+                ArrayList<Team> league = new ArrayList<Team>();
+                league.add(team1);
+                league.add(team2);
+                league.add(team3);
+                league.add(team4);
+
+                String currRecord = userTeam.getRecord();
+                record.setText(currRecord);
+            
+                /**Simming first ten games of season based on overall of team
+                 * Also displays the overall, lineup, and current record following sim
+                 */
+                for(int i = 0; i < 2; i++){
+                    for(int j = 0; j < 4; j++){
+                        Boolean win = mainSeason.simGame(userTeam, league.get(j));
+                        if(win) {
+                            userTeam.wins += 1;
+                        } else {
+                            userTeam.losses += 1;
+                        }
+                        currRecord = userTeam.getRecord();
+                        record.setText(currRecord);
+                        validate();
+                        repaint();
+                    }
+                }
+
             }
         });
     }

@@ -5,14 +5,17 @@ import java.util.ArrayList;
 public class mainSeason{
    private static int gamecount=0;
    public static Team myTeam;
-    public static boolean winGame(Team t1, Team t2){
+   public static Team tradeTeam;
+
+    public static boolean simGame(Team t1, Team t2){
        gamecount++;
        Team home=t1;
        Team away=t2;
-       if(home.getTeamOverall()>away.getTeamOverall()){
+       if(home.getTeamOverall() > away.getTeamOverall()){
            return true;
+       } else {
+          return false;
        }
-       return true;
     }
 
    public static Team generateRandomTeam(Team t1, Team t2, Team t3, Team t4){
@@ -34,8 +37,8 @@ public class mainSeason{
 
    public static Player getPlayerTradingFor(Team t1, Team t2, Team t3, Team t4) {
       int indexOfPlayerTradingFor = (int)(Math.random()*(7));
-      Team teamTradingWith = generateRandomTeam(t1, t2, t3, t4);
-      Player tradingFor = teamTradingWith.team.get(indexOfPlayerTradingFor);
+      tradeTeam = generateRandomTeam(t1, t2, t3, t4);
+      Player tradingFor = tradeTeam.team.get(indexOfPlayerTradingFor);
       return tradingFor;
    }
 
@@ -44,11 +47,11 @@ public class mainSeason{
    public static int trade(Boolean wantsTrade, Team t1, Team t2, Team t3, Team t4) {
       Player playerTrading = myTeam.team.get((int)(Math.random()*7));
       Player tradingFor = getPlayerTradingFor(t1, t2, t3, t4);
-      int indexOfPlayerTradingFor = t.team.indexOf(tradingFor);
+      int indexOfPlayerTradingFor = tradeTeam.team.indexOf(tradingFor);
       int indexOfWorstPlayer = myTeam.team.indexOf(myTeam.getWorstPlayer());
       if(wantsTrade) {
          myTeam.team.set(indexOfWorstPlayer, tradingFor);
-         t.team.set(indexOfPlayerTradingFor, playerTrading);
+         tradeTeam.team.set(indexOfPlayerTradingFor, playerTrading);
          if(indexOfPlayerTradingFor > indexOfWorstPlayer){
             return (int)(Math.random()*5+1);
          } else if(indexOfPlayerTradingFor > indexOfWorstPlayer) {
