@@ -13,6 +13,7 @@ public abstract class Player {
     private int speed;
     private int playmaking;
     private String name;
+
     public Player(int bH, int tP, int mR, int cR, int iq, int si, int h, int sp, int plm) {
         bHandle = bH;
         threePoint = tP;
@@ -38,9 +39,11 @@ public abstract class Player {
     public String getName(){
         return name;
     }
-    
-    public abstract int getOverall();
+
     public abstract String getPos();
+    public abstract int determineOverall();
+    public abstract int getOverall();
+    public abstract int setOverall(int i);
 
 
     public String toString(){

@@ -10,18 +10,22 @@ public class mainSeason{
    public static boolean simGame(Team t1, Team t2){
       gamecount++;
 
-      Team home=t1;
-      Team away=t2;
+      //on any given day, teams first pick can go off so there overall will be boosted till 99 for one game
+      int anyGivenDay = (int)(Math.random()*7 + 1);
+      int prevOvr = 0;
+      if(anyGivenDay == 2){
+         prevOvr = t1.team.get(0).setOverall(99);
+      }
 
-      int ovr1 = home.getTeamOverall();
-      int ovr2 = away.getTeamOverall();
+      int ovr1 = t1.getTeamOverall();
+      int ovr2 = t2.getTeamOverall();
 
-      //home court advantage
+      int nothing = t1.team.get(0).setOverall(prevOvr);
+
       //will determine home team (ignore names)
-
       int determineHome = (int)(Math.random()*2+1.5);
       if(determineHome == 1) {
-         ovr1 += 1;
+         ovr1 += 1; //homecourt advantage
       } else {
          ovr2 += 1;
       }
@@ -32,20 +36,6 @@ public class mainSeason{
          return false;
       }
    }
-
-   //gives boost to a random team on any given day
-   public static Team anyGivenDay(Team t1, Team t2){
-       int teamTradingWith = (int)(Math.random()*(2)+0.5);
-       if(teamTradingWith == 1){
-         return t1;
-       }
-       if(teamTradingWith == 2){
-         return t2;
-       }
-       return null;
-   }
-
-
 
    public static Team generateRandomTeam(Team t1, Team t2, Team t3, Team t4){
       int teamTradingWith = (int)(Math.random()*(4)+1.5);

@@ -1,5 +1,7 @@
 public class PF extends Player{
 
+    private int overall;
+
     public PF(){
         super(Random.getRandomInt(40,50),
         Random.getRandomInt(20,40),
@@ -10,9 +12,10 @@ public class PF extends Player{
         Random.getRandomInt(50,70),
         Random.getRandomInt(30,50),
         Random.getRandomInt(30,45));
+        overall = determineOverall();
     }
 
-    public int getOverall(){
+    public int determineOverall(){
         int average = 0;
         average = (int)(0.5*this.getHandle()+
         1.5*this.getClose()+
@@ -23,12 +26,21 @@ public class PF extends Player{
         1.5*this.getSize()+
         0.75*this.getThree()+
         0.75*this.getSpeed())/9;
-
         return average;
     }
 
     public String getPos(){
         return "PF";
+    }
+
+    public int getOverall() {
+        return overall;
+    }
+
+    public int setOverall(int i) {
+        int temp = overall;
+        overall = i;
+        return temp;
     }
     
 }

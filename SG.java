@@ -1,5 +1,6 @@
 public class SG extends Player{
 
+    private int overall;
     public SG(){
         super(Random.getRandomInt(70,85),
         Random.getRandomInt(70,100),
@@ -10,9 +11,10 @@ public class SG extends Player{
         Random.getRandomInt(40,55),
         Random.getRandomInt(65,90),
         Random.getRandomInt(60,80));
+        overall = determineOverall();
     }
 
-    public int getOverall(){
+    public int determineOverall(){
         int average = 0;
         average = (int)(1*this.getHandle()+
         0.5*this.getClose()+
@@ -29,5 +31,15 @@ public class SG extends Player{
 
     public String getPos(){
         return "SG";
+    }
+
+    public int getOverall() {
+        return overall;
+    }
+
+    public int setOverall(int i) {
+        int temp = overall;
+        overall = i;
+        return temp;
     }
 }

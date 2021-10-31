@@ -1,5 +1,6 @@
 public class Center extends Player{
 
+    private int overall;
     public Center(){
         super(Random.getRandomInt(30,40),
         Random.getRandomInt(1,20),
@@ -10,9 +11,10 @@ public class Center extends Player{
         Random.getRandomInt(80,100),
         Random.getRandomInt(25,45),
         Random.getRandomInt(20,35));
+        overall = determineOverall();
     }
 
-    public int getOverall(){
+    public int determineOverall(){
         int average = 0;
         average = (int)(0.25*this.getHandle()+
         1.75*this.getClose()+
@@ -29,6 +31,16 @@ public class Center extends Player{
 
     public String getPos(){
         return "Center";
+    }
+
+    public int getOverall() {
+        return overall;
+    }
+
+    public int setOverall(int i) {
+        int temp = overall;
+        overall = i;
+        return temp;
     }
     
 }
