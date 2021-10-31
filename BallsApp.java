@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 // import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
 import javax.swing.JFrame;
@@ -62,6 +63,7 @@ public class BallsApp extends JPanel{
     //continue buttons
     public JButton b6;
     public JButton b7;
+    public JButton b8;
 
     //JLabel for showing team:
     public JLabel output;
@@ -460,7 +462,7 @@ public class BallsApp extends JPanel{
                 repaint();
 
                 //redefines new gridlayout to display all teams
-                setLayout(new GridLayout(1,5));
+                setLayout(new GridLayout(1,3));
 
                 //makes new JLabel to display users record
                 JLabel record = new JLabel("record");
@@ -468,7 +470,21 @@ public class BallsApp extends JPanel{
                 record.setForeground(Color.white);
                 record.setHorizontalAlignment(SwingConstants.CENTER);
                 record.setVerticalAlignment(SwingConstants.CENTER);
+
+                JLabel teamDisplay = new JLabel("User's Team");
+                teamDisplay.setFont(font);
+                teamDisplay.setForeground(Color.white);
+                teamDisplay.setHorizontalAlignment(SwingConstants.CENTER);
+                teamDisplay.setVerticalAlignment(SwingConstants.CENTER);
+                teamDisplay.setText(userTeam.toString());
+
+                b8 = new JButton("Continue");
+                b8.setVerticalTextPosition(AbstractButton.CENTER);
+                b8.setHorizontalTextPosition(AbstractButton.LEADING);
+
+                add(b8);
                 add(record);
+                add(teamDisplay);
                 validate();
                 repaint();
 
@@ -499,9 +515,24 @@ public class BallsApp extends JPanel{
                         repaint();
                     }
                 }
+            }
+        });
+
+        b8.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                Team randomTeam = mainSeason.generateRandomTeam(team1, team2, team3, team4);
+                Player tradingFor = mainSeason.getPlayerTradingFor(randomTeam);
+                int intOfPlayerTrading = (int)(Math.random()*8);
+                Player playerTrading = userTeam.team.get(intOfPlayerTrading);
+
+                String[] buttons = {"Accept", "Decline"}
+                JOptionPane.showMessageDialog(null, randomTeam.toString() + "proposes trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall() +
+                "for "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_CANCEL_OPTION);
 
             }
         });
+
+
     }
 
     public static void setUp(){

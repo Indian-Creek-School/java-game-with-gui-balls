@@ -54,18 +54,17 @@ public class mainSeason{
       return null;
    }
 
-   public static Player getPlayerTradingFor(Team t1, Team t2, Team t3, Team t4) {
+   public static Player getPlayerTradingFor(Team t1) {
       int indexOfPlayerTradingFor = (int)(Math.random()*(7));
-      tradeTeam = generateRandomTeam(t1, t2, t3, t4);
-      Player tradingFor = tradeTeam.team.get(indexOfPlayerTradingFor);
+      Player tradingFor = t1.team.get(indexOfPlayerTradingFor);
       return tradingFor;
    }
 
    //add random players in the GUI class rather than here.
    
-   public static int trade(Boolean wantsTrade, Team t1, Team t2, Team t3, Team t4) {
-      Player playerTrading = myTeam.team.get((int)(Math.random()*7));
-      Player tradingFor = getPlayerTradingFor(t1, t2, t3, t4);
+   public static int trade(Boolean wantsTrade, Player p1, Player p2) {
+      Player playerTrading = p1;
+      Player tradingFor = p2;
       int indexOfPlayerTradingFor = tradeTeam.team.indexOf(tradingFor);
       int indexOfWorstPlayer = myTeam.team.indexOf(myTeam.getWorstPlayer());
       if(wantsTrade) {
