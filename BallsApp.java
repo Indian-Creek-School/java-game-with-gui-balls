@@ -67,6 +67,7 @@ public class BallsApp extends JPanel{
 
     //JLabel for showing team:
     public JLabel output;
+    public JLabel record = new JLabel("record");
 
 
     public BallsApp(){
@@ -150,6 +151,10 @@ public class BallsApp extends JPanel{
         b7.setVerticalTextPosition(AbstractButton.CENTER);
         b7.setHorizontalTextPosition(AbstractButton.LEADING); 
 
+        b8 = new JButton("Continue");
+        b8.setVerticalTextPosition(AbstractButton.CENTER);
+        b8.setHorizontalTextPosition(AbstractButton.LEADING);
+
         //adding elements to grid layout
         this.add(pgs);
         this.add(b1);
@@ -180,6 +185,9 @@ public class BallsApp extends JPanel{
         simTeam2 = new ArrayList<Player>();
         simTeam3 = new ArrayList<Player>();
         simTeam4 = new ArrayList<Player>();
+
+        //making array list of all teams they are going to play to iterate through
+        ArrayList<Team> league = new ArrayList<Team>();
 
         /**
          * All the actions listeners: Gets the selected player, turn it into a string of the players name,
@@ -465,8 +473,8 @@ public class BallsApp extends JPanel{
                 setLayout(new GridLayout(1,3));
 
                 //makes new JLabel to display users record
-                JLabel record = new JLabel("record");
-                record.setFont(font);
+                Font font2 = new Font("Times New Roman", Font.BOLD, 30);
+                record.setFont(font2);
                 record.setForeground(Color.white);
                 record.setHorizontalAlignment(SwingConstants.CENTER);
                 record.setVerticalAlignment(SwingConstants.CENTER);
@@ -478,25 +486,19 @@ public class BallsApp extends JPanel{
                 teamDisplay.setVerticalAlignment(SwingConstants.CENTER);
                 teamDisplay.setText(userTeam.toString());
 
-                b8 = new JButton("Continue");
-                b8.setVerticalTextPosition(AbstractButton.CENTER);
-                b8.setHorizontalTextPosition(AbstractButton.LEADING);
-
                 add(b8);
                 add(record);
                 add(teamDisplay);
                 validate();
                 repaint();
 
-                //making array list of all teams they are going to play to iterate through
-                ArrayList<Team> league = new ArrayList<Team>();
+                String currRecord = userTeam.getRecord();
+                record.setText(currRecord);
+
                 league.add(team1);
                 league.add(team2);
                 league.add(team3);
                 league.add(team4);
-
-                String currRecord = userTeam.getRecord();
-                record.setText(currRecord);
             
                 /**Simming first ten games of season based on overall of team
                  * Also displays the overall, lineup, and current record following sim
@@ -525,10 +527,25 @@ public class BallsApp extends JPanel{
                 int intOfPlayerTrading = (int)(Math.random()*8);
                 Player playerTrading = userTeam.team.get(intOfPlayerTrading);
 
-                String[] buttons = {"Accept", "Decline"}
-                JOptionPane.showMessageDialog(null, randomTeam.toString() + "proposes trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall() +
-                "for "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_CANCEL_OPTION);
+                String[] buttons = {"Accept", "Decline"};
+                JOptionPane.showMessageDialog(null, "A team has proposed trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall()+ " " +
+                "for your player "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_CANCEL_OPTION);
 
+                String currRecord = "";
+                for(int i = 0; i < 2; i++){
+                    for(int j = 0; j < 4; j++){
+                        Boolean win = mainSeason.simGame(userTeam, league.get(j));
+                        if(win) {
+                            userTeam.wins += 1;
+                        } else {
+                            userTeam.losses += 1;
+                        }
+                        currRecord = userTeam.getRecord();
+                        record.setText(currRecord);
+                        validate();
+                        repaint();
+                    }
+                }
             }
         });
 
