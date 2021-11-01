@@ -469,7 +469,10 @@ public class BallsApp extends JPanel{
                 removeAll();
                 validate();
                 repaint();
-
+                int x=Random.getRandomInt(0,5);
+                if(x==3){
+                    Random.aids(userTeam);
+                }
                 //redefines new gridlayout to display all teams
                 setLayout(new GridLayout(1,3));
 
