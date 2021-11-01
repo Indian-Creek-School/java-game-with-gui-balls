@@ -68,6 +68,7 @@ public class BallsApp extends JPanel{
     //JLabel for showing team:
     public JLabel output;
     public JLabel record = new JLabel("record");
+    JLabel teamDisplay = new JLabel("User Team");
 
 
     public BallsApp(){
@@ -479,7 +480,6 @@ public class BallsApp extends JPanel{
                 record.setHorizontalAlignment(SwingConstants.CENTER);
                 record.setVerticalAlignment(SwingConstants.CENTER);
 
-                JLabel teamDisplay = new JLabel("User's Team");
                 teamDisplay.setFont(font);
                 teamDisplay.setForeground(Color.white);
                 teamDisplay.setHorizontalAlignment(SwingConstants.CENTER);
@@ -527,9 +527,20 @@ public class BallsApp extends JPanel{
                 int intOfPlayerTrading = (int)(Math.random()*8);
                 Player playerTrading = userTeam.team.get(intOfPlayerTrading);
 
-                String[] buttons = {"Accept", "Decline"};
-                JOptionPane.showMessageDialog(null, "A team has proposed trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall()+ " " +
-                "for your player "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_CANCEL_OPTION);
+                int returnValue = JOptionPane.showConfirmDialog(null, "A team has proposed trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall()+ " " +
+                "for your player "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_OPTION);
+                Boolean tradeAccepted = false;
+                if(returnValue == 1){
+                    tradeAccepted = true;
+                } else {
+                    tradeAccepted = false;
+                }
+                mainSeason.trade(tradeAccepted, playerTrading, tradingFor, userTeam, randomTeam);
+                System.out.println(userTeam.toString());
+                teamDisplay.setText(userTeam.toString());
+                validate();
+                repaint();
+
 
                 String currRecord = "";
                 for(int i = 0; i < 2; i++){
