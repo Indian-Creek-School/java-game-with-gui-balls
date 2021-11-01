@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Random {
     public static String aids(Team t){
         String name=t.team.get(getRandomInt(0, 7)).getName();
-        return name+" has aids";
+        return name+" has Iron-deficiency anemia";
     }
     
     public static String newName(){
