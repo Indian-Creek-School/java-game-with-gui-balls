@@ -66,23 +66,23 @@ public class mainSeason{
       Player playerTrading = p1;
       Player tradingFor = p2;
       int indexOfPlayerTradingFor = tradeTeam.team.indexOf(tradingFor);
-      int indexOfWorstPlayer = userTeam.team.indexOf(myTeam.getWorstPlayer());
+      int indexOfPlayer = userTeam.team.indexOf(playerTrading);
       if(wantsTrade) {
-         userTeam.team.set(indexOfWorstPlayer, tradingFor);
+         userTeam.team.set(indexOfPlayer, tradingFor);
          tradeTeam.team.set(indexOfPlayerTradingFor, playerTrading);
-         if(indexOfPlayerTradingFor > indexOfWorstPlayer){
+         if(indexOfPlayerTradingFor > indexOfPlayer){
             return (int)(Math.random()*5+1);
-         } else if(indexOfPlayerTradingFor > indexOfWorstPlayer) {
+         } else if(indexOfPlayerTradingFor > indexOfPlayer) {
             return -1*(int)(Math.random()*5+1);
-         } else if(indexOfPlayerTradingFor == indexOfWorstPlayer){
+         } else if(indexOfPlayerTradingFor == indexOfPlayer){
             return 0;
          }
       } else {
-         if(indexOfPlayerTradingFor > indexOfWorstPlayer){
+         if(indexOfPlayerTradingFor > indexOfPlayer){
             return -1*(int)(Math.random()*5+1);
-         } else if(indexOfPlayerTradingFor > indexOfWorstPlayer) {
+         } else if(indexOfPlayerTradingFor > indexOfPlayer) {
             return (int)(Math.random()*5+1);
-         } else if(indexOfPlayerTradingFor == indexOfWorstPlayer){
+         } else if(indexOfPlayerTradingFor == indexOfPlayer){
             return 0;
          }
       }

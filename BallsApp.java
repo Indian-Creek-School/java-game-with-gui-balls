@@ -541,7 +541,6 @@ public class BallsApp extends JPanel{
                 validate();
                 repaint();
 
-
                 for(int i = 0; i < 2; i++){
                     for(int j = 0; j < 4; j++){
                         Boolean win = mainSeason.simGame(userTeam, league.get(j));
