@@ -25,6 +25,9 @@ import java.awt.GridLayout;
 public class BallsApp extends JPanel{
     //main class that will run
 
+    //counts time a button runs
+    private int timesRun;
+
     //array lists which separates prospect players to be drafted by position
     private ArrayList<Player> pgProspects;
     private ArrayList<Player> sgProspects;
@@ -64,6 +67,7 @@ public class BallsApp extends JPanel{
     public JButton b6;
     public JButton b7;
     public JButton b8;
+    public JButton b9;
 
     //JLabel for showing team:
     public JLabel output;
@@ -155,6 +159,10 @@ public class BallsApp extends JPanel{
         b8 = new JButton("Continue");
         b8.setVerticalTextPosition(AbstractButton.CENTER);
         b8.setHorizontalTextPosition(AbstractButton.LEADING);
+
+        b9 = new JButton("Continue");
+        b9.setVerticalTextPosition(AbstractButton.CENTER);
+        b9.setHorizontalTextPosition(AbstractButton.LEADING);
 
         //adding elements to grid layout
         this.add(pgs);
@@ -520,45 +528,54 @@ public class BallsApp extends JPanel{
             }
         });
 
+        timesRun = 0;
         b8.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                int x=Random.getRandomInt(0,1);
-                if(x==0){
-                    System.out.println(Random.aids(userTeam));
-                }
-                Team randomTeam = mainSeason.generateRandomTeam(team1, team2, team3, team4);
-                Player tradingFor = mainSeason.getPlayerTradingFor(randomTeam);
-                int intOfPlayerTrading = (int)(Math.random()*8);
-                Player playerTrading = userTeam.team.get(intOfPlayerTrading);
-
-                int returnValue = JOptionPane.showConfirmDialog(null, "A team has proposed trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall()+ " " +
-                "for your player "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_OPTION);
-                System.out.println(returnValue);
-                Boolean tradeAccepted = false;
-                if(returnValue == 0){
-                    tradeAccepted = true;
-                } else if(returnValue == 1) {
-                    tradeAccepted = false;
-                }
-                mainSeason.trade(tradeAccepted, playerTrading, tradingFor, userTeam, randomTeam);
-                // System.out.println(userTeam.toString());
-                teamDisplay.setText(userTeam.toString());
-                validate();
-                repaint();
-
-                for(int i = 0; i < 2; i++){
-                    for(int j = 0; j < 4; j++){
-                        Boolean win = mainSeason.simGame(userTeam, league.get(j));
-                        if(win) {
-                            userTeam.wins += 1;
-                        } else {
-                            userTeam.losses += 1;
-                        }
-                        String currRecord = userTeam.getRecord();
-                        record.setText(currRecord);
-                        validate();
-                        repaint();
+                timesRun = timesRun + 1;
+                if(timesRun < 8) {
+                    int x = Random.getRandomInt(0,1);
+                    if(x==0){
+                        System.out.println(Random.aids(userTeam));
                     }
+                    Team randomTeam = mainSeason.generateRandomTeam(team1, team2, team3, team4);
+                    Player tradingFor = mainSeason.getPlayerTradingFor(randomTeam);
+                    int intOfPlayerTrading = (int)(Math.random()*8);
+                    Player playerTrading = userTeam.team.get(intOfPlayerTrading);
+
+                    int returnValue = JOptionPane.showConfirmDialog(null, "A team has proposed trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall()+ " " +
+                    "for your player "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_OPTION);
+                    System.out.println(returnValue);
+                    Boolean tradeAccepted = false;
+                    if(returnValue == 0){
+                        tradeAccepted = true;
+                    } else if(returnValue == 1) {
+                        tradeAccepted = false;
+                    }
+                    mainSeason.trade(tradeAccepted, playerTrading, tradingFor, userTeam, randomTeam);
+                    // System.out.println(userTeam.toString());
+                    teamDisplay.setText(userTeam.toString());
+                    validate();
+                    repaint();
+
+                    for(int i = 0; i < 2; i++){
+                        for(int j = 0; j < 4; j++){
+                            Boolean win = mainSeason.simGame(userTeam, league.get(j));
+                            if(win) {
+                                userTeam.wins += 1;
+                            } else {
+                                userTeam.losses += 1;
+                            }
+                            String currRecord = userTeam.getRecord();
+                            record.setText(currRecord);
+                            validate();
+                            repaint();
+                        }
+                    }
+                } else {
+                    removeAll();
+                    validate();
+                    repaint();
+                    setLayout(new GridLayout(1,1));
                 }
             }
         });

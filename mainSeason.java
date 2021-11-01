@@ -20,7 +20,9 @@ public class mainSeason{
       int ovr1 = t1.getTeamOverall();
       int ovr2 = t2.getTeamOverall();
 
-      int nothing = t1.team.get(0).setOverall(prevOvr);
+      if(anyGivenDay == 2){
+         t1.team.get(0).setOverall(prevOvr);
+      }
 
       //will determine home team (ignore names)
       int determineHome = (int)(Math.random()*2+1.5);
