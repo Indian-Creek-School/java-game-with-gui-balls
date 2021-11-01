@@ -529,14 +529,15 @@ public class BallsApp extends JPanel{
 
                 int returnValue = JOptionPane.showConfirmDialog(null, "A team has proposed trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall()+ " " +
                 "for your player "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_OPTION);
+                System.out.println(returnValue);
                 Boolean tradeAccepted = false;
-                if(returnValue == 1){
+                if(returnValue == 0){
                     tradeAccepted = true;
-                } else {
+                } else if(returnValue == 1) {
                     tradeAccepted = false;
                 }
                 mainSeason.trade(tradeAccepted, playerTrading, tradingFor, userTeam, randomTeam);
-                System.out.println(userTeam.toString());
+                // System.out.println(userTeam.toString());
                 teamDisplay.setText(userTeam.toString());
                 validate();
                 repaint();
