@@ -62,7 +62,7 @@ public class mainSeason{
 
    //add random players in the GUI class rather than here.
    
-   public static int trade(Boolean wantsTrade, Player p1, Player p2, Team userTeam, Team tradeTeam) {
+   public static void trade(Boolean wantsTrade, Player p1, Player p2, Team userTeam, Team tradeTeam) {
       Player playerTrading = p1;
       Player tradingFor = p2;
       int indexOfPlayerTradingFor = tradeTeam.team.indexOf(tradingFor);
@@ -70,23 +70,7 @@ public class mainSeason{
       if(wantsTrade) {
          userTeam.team.set(indexOfPlayer, tradingFor);
          tradeTeam.team.set(indexOfPlayerTradingFor, playerTrading);
-         if(indexOfPlayerTradingFor > indexOfPlayer){
-            return (int)(Math.random()*5+1);
-         } else if(indexOfPlayerTradingFor > indexOfPlayer) {
-            return -1*(int)(Math.random()*5+1);
-         } else if(indexOfPlayerTradingFor == indexOfPlayer){
-            return 0;
-         }
-      } else {
-         if(indexOfPlayerTradingFor > indexOfPlayer){
-            return -1*(int)(Math.random()*5+1);
-         } else if(indexOfPlayerTradingFor > indexOfPlayer) {
-            return (int)(Math.random()*5+1);
-         } else if(indexOfPlayerTradingFor == indexOfPlayer){
-            return 0;
-         }
       }
-      return 0;
    }
     
     public void SoundClipTest() {
