@@ -469,10 +469,7 @@ public class BallsApp extends JPanel{
                 removeAll();
                 validate();
                 repaint();
-                int x=Random.getRandomInt(0,5);
-                if(x==3){
-                    Random.aids(userTeam);
-                }
+
                 //redefines new gridlayout to display all teams
                 setLayout(new GridLayout(1,3));
 
@@ -525,6 +522,10 @@ public class BallsApp extends JPanel{
 
         b8.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                int x=Random.getRandomInt(0,1);
+                if(x==0){
+                    System.out.println(Random.aids(userTeam));
+                }
                 Team randomTeam = mainSeason.generateRandomTeam(team1, team2, team3, team4);
                 Player tradingFor = mainSeason.getPlayerTradingFor(randomTeam);
                 int intOfPlayerTrading = (int)(Math.random()*8);
