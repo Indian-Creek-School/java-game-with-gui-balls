@@ -579,8 +579,6 @@ public class BallsApp extends JPanel{
                 }
             }
         });
-
-
     }
 
     public static void setUp(){
