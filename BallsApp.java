@@ -544,8 +544,6 @@ public class BallsApp extends JPanel{
                 validate();
                 repaint();
 
-
-                String currRecord = "";
                 for(int i = 0; i < 2; i++){
                     for(int j = 0; j < 4; j++){
                         Boolean win = mainSeason.simGame(userTeam, league.get(j));
@@ -554,7 +552,7 @@ public class BallsApp extends JPanel{
                         } else {
                             userTeam.losses += 1;
                         }
-                        currRecord = userTeam.getRecord();
+                        String currRecord = userTeam.getRecord();
                         record.setText(currRecord);
                         validate();
                         repaint();
