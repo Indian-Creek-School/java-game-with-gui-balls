@@ -94,4 +94,43 @@ public class mainSeason{
            e.printStackTrace();
         }
      }
+
+     public static ArrayList<Team> setPlayoffs(Team t1, Team t2, Team t3, Team t4, Team t5) {
+        ArrayList<Team> allTeams = new ArrayList<Team>();
+        allTeams.add(t1);
+        allTeams.add(t2);
+        allTeams.add(t3);
+        allTeams.add(t4);
+        allTeams.add(t5);
+
+        ArrayList<Team> playoffs = sortByWins(allTeams);
+        playoffs.remove(4);
+
+        return playoffs;
+
+     }
+
+     public static ArrayList<Team> sortByWins(ArrayList<Team> team) { //credits to https://www.wikitechy.com/interview-questions/java/what-is-linear-sort-in-java/
+         int n = team.size(); 
+         ArrayList<Team> t1 = team;
+   
+         // One by one move boundary of unsorted subarray 
+         for (int i = 0; i < n-1; i++) 
+         { 
+             // Find the minimum element in unsorted array 
+             int min_idx = i; 
+             for (int j = i+1; j < n; j++) {
+               if (t1.get(i).getWins() < t1.get(min_idx).getWins());
+               min_idx = j; 
+             }
+   
+             // Swap the found minimum element with the first 
+             // element 
+             Team temp = t1.get(min_idx); 
+             t1.set(min_idx, temp);
+             t1.set(i, temp);
+         } 
+
+         return t1;
+     }  
 }

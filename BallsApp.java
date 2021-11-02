@@ -72,7 +72,8 @@ public class BallsApp extends JPanel{
     //JLabel for showing team:
     public JLabel output;
     public JLabel record = new JLabel("record");
-    JLabel teamDisplay = new JLabel("User Team");
+    public JLabel teamDisplay = new JLabel("User Team");
+    public JLabel endLoseMessage = new JLabel("You lost");
 
 
     public BallsApp(){
@@ -623,6 +624,23 @@ public class BallsApp extends JPanel{
                     validate();
                     repaint();
                     setLayout(new GridLayout(1,1));
+                    ArrayList<Team> playoffs = mainSeason.setPlayoffs(userTeam, team1, team2, team3, team4);
+                    //checking if user made playoffs
+                    Boolean userInPlayoffs = false;
+                    for(Team t : playoffs){
+                        if(t == userTeam){
+                            userInPlayoffs = true;
+                        }
+                    }
+                    if(userInPlayoffs) {
+
+                    } else {
+                        endLoseMessage.setText("Congratulations! You've earned the number one overall pick!");
+                        endLoseMessage.setFont(font);
+                        endLoseMessage.setForeground(Color.white);
+                        endLoseMessage.setHorizontalAlignment(SwingConstants.CENTER);
+                        endLoseMessage.setVerticalAlignment(SwingConstants.CENTER);
+                    }
                 }
             }
         });
