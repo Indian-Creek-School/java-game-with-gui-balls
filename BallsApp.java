@@ -478,6 +478,12 @@ public class BallsApp extends JPanel{
                 validate();
                 repaint();
 
+                System.out.println(team1.getTeamOverall());
+                System.out.println(team2.getTeamOverall());
+                System.out.println(team3.getTeamOverall());
+                System.out.println(team4.getTeamOverall());
+                System.out.println(userTeam.getTeamOverall());
+
                 //redefines new gridlayout to display all teams
                 setLayout(new GridLayout(1,3));
 
@@ -508,7 +514,7 @@ public class BallsApp extends JPanel{
                 league.add(team3);
                 league.add(team4);
             
-                /**Simming first ten games of season based on overall of team
+                /**Simming first 8 games of season based on overall of team
                  * Also displays the overall, lineup, and current record following sim
                  */
                 for(int i = 0; i < 2; i++){
@@ -516,13 +522,31 @@ public class BallsApp extends JPanel{
                         Boolean win = mainSeason.simGame(userTeam, league.get(j));
                         if(win) {
                             userTeam.wins += 1;
+                            league.get(j).losses += 1;
                         } else {
                             userTeam.losses += 1;
+                            league.get(j).wins += 1;
                         }
                         currRecord = userTeam.getRecord();
                         record.setText(currRecord);
                         validate();
                         repaint();
+                    }
+                }
+
+                //sims cpu v cpu games
+                for(int i = 0; i < 4; i++) {
+                    for(int j = 0; j < 4; j++){
+                        if(league.get(i) != league.get(j)){
+                            Boolean simGame = mainSeason.simGame(league.get(i), league.get(j));
+                            if(simGame){
+                                league.get(i).wins += 1;
+                                league.get(j).losses += 1;
+                            } else {
+                                league.get(i).losses += 1;
+                                league.get(j).wins += 1;
+                            }
+                        }
                     }
                 }
             }
@@ -562,8 +586,10 @@ public class BallsApp extends JPanel{
                             Boolean win = mainSeason.simGame(userTeam, league.get(j));
                             if(win) {
                                 userTeam.wins += 1;
+                                league.get(j).losses += 1;
                             } else {
                                 userTeam.losses += 1;
+                                league.get(j).wins += 1;
                             }
                             String currRecord = userTeam.getRecord();
                             record.setText(currRecord);
@@ -571,6 +597,27 @@ public class BallsApp extends JPanel{
                             repaint();
                         }
                     }
+
+                    //sims cpu v cpu games
+                    for(int i = 0; i < 4; i++) {
+                        for(int j = 0; j < 4; j++){
+                            if(league.get(i) != league.get(j)){
+                                Boolean simGame = mainSeason.simGame(league.get(i), league.get(j));
+                                if(simGame){
+                                    league.get(i).wins += 1;
+                                    league.get(j).losses += 1;
+                                } else {
+                                    league.get(i).losses += 1;
+                                    league.get(j).wins += 1;
+                                }
+                            }
+                        }
+                    }
+
+                    System.out.println(team1.getRecord());
+                    System.out.println(team2.getRecord());
+                    System.out.println(team3.getRecord());
+                    System.out.println(team4.getRecord());
                 } else {
                     removeAll();
                     validate();
