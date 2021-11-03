@@ -69,6 +69,9 @@ public class BallsApp extends JPanel{
     public JButton b8;
     public JButton b9;
 
+    //end button
+    public JButton b10;
+
     //JLabel for showing team:
     public JLabel output;
     public JLabel record = new JLabel("record");
@@ -164,6 +167,10 @@ public class BallsApp extends JPanel{
         b9 = new JButton("Continue");
         b9.setVerticalTextPosition(AbstractButton.CENTER);
         b9.setHorizontalTextPosition(AbstractButton.LEADING);
+
+        b10 = new JButton("End");
+        b10.setVerticalTextPosition(AbstractButton.CENTER);
+        b10.setHorizontalTextPosition(AbstractButton.LEADING);
 
         //adding elements to grid layout
         this.add(pgs);
@@ -619,11 +626,12 @@ public class BallsApp extends JPanel{
                     System.out.println(team2.getRecord());
                     System.out.println(team3.getRecord());
                     System.out.println(team4.getRecord());
+                    System.out.println(userTeam.getRecord());
                 } else {
                     removeAll();
                     validate();
                     repaint();
-                    setLayout(new GridLayout(1,1));
+                    setLayout(new GridLayout(2,1));
                     ArrayList<Team> playoffs = mainSeason.setPlayoffs(userTeam, team1, team2, team3, team4);
                     //checking if user made playoffs
                     Boolean userInPlayoffs = false;
@@ -640,8 +648,18 @@ public class BallsApp extends JPanel{
                         endLoseMessage.setForeground(Color.white);
                         endLoseMessage.setHorizontalAlignment(SwingConstants.CENTER);
                         endLoseMessage.setVerticalAlignment(SwingConstants.CENTER);
+                        add(endLoseMessage);
+                        add(b10);
+                        validate();
+                        repaint();
                     }
                 }
+            }
+        });
+
+        b10.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.exit(0);
             }
         });
     }

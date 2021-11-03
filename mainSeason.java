@@ -40,7 +40,7 @@ public class mainSeason{
    }
 
    public static Team generateRandomTeam(Team t1, Team t2, Team t3, Team t4){
-      int teamTradingWith = (int)(Math.random()*(4)+1.5);
+      int teamTradingWith = (int)(Math.random()*(4)+1);
       if(teamTradingWith == 1){
          return t1;
       }
@@ -104,7 +104,7 @@ public class mainSeason{
         allTeams.add(t5);
 
         ArrayList<Team> playoffs = sortByWins(allTeams);
-        playoffs.remove(4);
+        playoffs.remove(0);
 
         return playoffs;
 
