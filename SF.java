@@ -5,8 +5,8 @@ public class SF extends Player{
     public SF(){
         super(Random.getRandomInt(50,75),
         Random.getRandomInt(50,80),
-        Random.getRandomInt(85,90),
-        Random.getRandomInt(70,80),
+        Random.getRandomInt(80,90),
+        Random.getRandomInt(65,80),
         Random.getRandomInt(50,75),
         Random.getRandomInt(70,75),
         Random.getRandomInt(50,70),
