@@ -118,13 +118,7 @@ public class mainSeason{
          // One by one move boundary of unsorted subarray 
          for (int i = 0; i < n-1; i++) 
          { 
-             // Find the minimum element in unsorted array 
-             min_idx = i;
-             for (int j = i+1; j < n; j++) {
-               if (t1.get(i).getWins() < t1.get(min_idx).getWins()) {
-                  min_idx = j;
-               } 
-             }
+
    
              // Swap the found minimum element with the first 
              // element 
