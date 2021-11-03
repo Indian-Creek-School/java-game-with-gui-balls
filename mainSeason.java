@@ -111,27 +111,18 @@ public class mainSeason{
      }
 
      public static ArrayList<Team> sortByWins(ArrayList<Team> team) { //credits to https://www.wikitechy.com/interview-questions/java/what-is-linear-sort-in-java/
-         int n = team.size(); 
          ArrayList<Team> t1 = team;
-         int min_idx = 0;
    
-         // One by one move boundary of unsorted subarray 
-         for (int i = 0; i < n-1; i++) 
-         { 
-             // Find the minimum element in unsorted array 
-             min_idx = i;
-             for (int j = i+1; j < n; j++) {
-               if (t1.get(i).getWins() < t1.get(min_idx).getWins()) {
-                  min_idx = j;
-               } 
-             }
-   
-             // Swap the found minimum element with the first 
-             // element 
-             Team temp = t1.get(min_idx); 
-             t1.set(min_idx, temp);
-             t1.set(i, temp);
-         } 
+         int n = team.size();  
+         for (int j = 1; j < n; j++) {  
+               Team key = t1.get(j);  
+               int i = j-1;  
+               while ( (i > -1) && ( t1.get(i).getWins() > key.getWins() ) ) {  
+                  t1.set(i+1, t1.get(i));  
+                  i--;  
+               }  
+               t1.set(i+1, key);
+         }  
 
          return t1;
      }  
