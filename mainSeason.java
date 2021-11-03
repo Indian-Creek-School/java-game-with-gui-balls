@@ -3,7 +3,7 @@ import java.net.URL;
 import javax.sound.sampled.*;
 import java.util.ArrayList;
 public class mainSeason{
-   private static int gamecount=0;
+   public static int gamecount;
    public static Team myTeam;
    public static Team tradeTeam;
 

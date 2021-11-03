@@ -641,9 +641,12 @@ public class BallsApp extends JPanel{
                         }
                     }
                     if(userInPlayoffs) {
-
+                        removeAll();
+                        validate();
+                        repaint();
+                        setLayout(new GridLayout(3,1));
                     } else {
-                        endLoseMessage.setText("Congratulations! You've earned the number one overall pick!");
+                        endLoseMessage.setText("Congratulations! You missed the playoffs and earned the number one overall pick! (aka, you lose)");
                         endLoseMessage.setFont(font);
                         endLoseMessage.setForeground(Color.white);
                         endLoseMessage.setHorizontalAlignment(SwingConstants.CENTER);
