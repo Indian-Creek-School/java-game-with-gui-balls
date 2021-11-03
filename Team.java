@@ -4,11 +4,19 @@ public class Team {
     public ArrayList<Player> team;
     public int wins;
     public int losses;
+    public int semiWs;
+    public int semiLs;
+    public int finalWs;
+    public int finalLs;
 
     public Team(ArrayList<Player> t){
         team = t;
         wins = 0;
         losses = 0;
+        semiWs = 0;
+        semiLs = 0;
+        finalWs = 0;
+        finalLs = 0;
     }
 
     public ArrayList<Player> getTeam(){

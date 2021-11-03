@@ -41,6 +41,9 @@ public class BallsApp extends JPanel{
     private ArrayList<Player> simTeam3;
     private ArrayList<Player> simTeam4;
 
+    //arraylist of playoff teams
+    private ArrayList<Team> playoffs;
+
     //teams to be used. Will have arraylist corresponding to one above.
     private Team team1;
     private Team team2;
@@ -71,6 +74,12 @@ public class BallsApp extends JPanel{
 
     //end button
     public JButton b10;
+
+    //semifinals play game button
+    public JButton b11;
+
+    //semifinals record label
+    public JLabel seriesScore = new JLabel("Series");
 
     //JLabel for showing team:
     public JLabel output;
@@ -171,6 +180,10 @@ public class BallsApp extends JPanel{
         b10 = new JButton("End");
         b10.setVerticalTextPosition(AbstractButton.CENTER);
         b10.setHorizontalTextPosition(AbstractButton.LEADING);
+
+        b11 = new JButton("Play Game");
+        b11.setVerticalTextPosition(AbstractButton.CENTER);
+        b11.setHorizontalTextPosition(AbstractButton.LEADING);
 
         //adding elements to grid layout
         this.add(pgs);
@@ -632,11 +645,11 @@ public class BallsApp extends JPanel{
                     validate();
                     repaint();
                     setLayout(new GridLayout(2,1));
-                    ArrayList<Team> playoffs = mainSeason.setPlayoffs(userTeam, team1, team2, team3, team4);
+                    playoffs = mainSeason.setPlayoffs(userTeam, team1, team2, team3, team4);
                     //checking if user made playoffs
                     Boolean userInPlayoffs = false;
                     for(Team t : playoffs){
-                        if(t == userTeam){
+                        if(t.equals(userTeam)){
                             userInPlayoffs = true;
                         }
                     }
@@ -645,6 +658,16 @@ public class BallsApp extends JPanel{
                         validate();
                         repaint();
                         setLayout(new GridLayout(3,1));
+                        //Semifinals screen setup
+
+                        seriesScore.setFont(font);
+                        seriesScore.setForeground(Color.white);
+                        seriesScore.setHorizontalAlignment(SwingConstants.CENTER);
+                        seriesScore.setVerticalAlignment(SwingConstants.CENTER);
+                        teamDisplay.setText(userTeam.semiWs + " - " + userTeam.semiLs);
+                        add(b11);
+                        add(seriesScore);
+                        add(teamDisplay);
                     } else {
                         endLoseMessage.setText("Congratulations! You missed the playoffs and earned the number one overall pick! (aka, you lose)");
                         endLoseMessage.setFont(font);
@@ -663,6 +686,42 @@ public class BallsApp extends JPanel{
         b10.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 System.exit(0);
+            }
+        });
+
+        b11.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                int gameCount = 0;
+                if(gameCount < 3){
+                    //add a joptions pane here where they make decisions
+
+                    //finding which seed users team is:
+                    int seedOfUser = 0;
+                    for(int i = 0; i < playoffs.size(); i++){
+                        if(playoffs.get(i) == userTeam){
+                            seedOfUser = i;
+                        }
+                    }
+
+                    //if loop where within prompts will be shown to user for gametime decisions
+                    if(gameCount == 0){
+
+                    } else if(gameCount == 1){
+
+                    } else if (gameCount == 2){
+
+                    }
+                    //sims game between first and fourth seeds
+                    Playoffs.simSemisPlayoffGame(playoffs.get(0), playoffs.get(3), 0);
+
+                    //sims game between second and third seeds
+                    Playoffs.simSemisPlayoffGame(playoffs.get(1), playoffs.get(2), 0);
+
+                    seriesScore.setText(userTeam.semiWs + " - " + userTeam.semiLs);
+                    validate();
+                    repaint();
+                    gameCount++;
+                }
             }
         });
     }
