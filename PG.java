@@ -10,7 +10,7 @@ public class PG extends Player {
         Random.getRandomInt(30,45),
         Random.getRandomInt(30,45),
         Random.getRandomInt(75,100),
-        Random.getRandomInt(70,100));
+        Random.getRandomInt(70,80));
         overall = determineOverall();
     }
 
