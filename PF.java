@@ -18,12 +18,12 @@ public class PF extends Player{
     public int determineOverall(){
         int average = 0;
         average = (int)(0.5*this.getHandle()+
-        1.75*this.getClose()+
+        2*this.getClose()+
         1.5*this.getHeight()+
-        0.5*this.getIQ()+
+        0.25*this.getIQ()+
         1.75*this.getMid()+
-        0.5*this.getPlaymaking()+
-        1.5*this.getSize()+
+        0.25*this.getPlaymaking()+
+        1.75*this.getSize()+
         0.5*this.getThree()+
         0.5*this.getSpeed())/9;
         return average;
