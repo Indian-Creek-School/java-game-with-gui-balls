@@ -20,8 +20,8 @@ public class SF extends Player{
         average = (int)(0.5*this.getHandle()+
         1.25*this.getClose()+
         1*this.getHeight()+
-        1*this.getIQ()+
-        1.5*this.getMid()+
+        0.5*this.getIQ()+
+        2*this.getMid()+
         0.5*this.getPlaymaking()+
         1.25*this.getSize()+
         1*this.getThree()+
