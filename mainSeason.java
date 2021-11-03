@@ -105,7 +105,6 @@ public class mainSeason{
 
         ArrayList<Team> playoffs = sortByWins(allTeams);
         playoffs.remove(0);
-
         return playoffs;
 
      }
