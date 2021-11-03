@@ -693,8 +693,8 @@ public class BallsApp extends JPanel{
                         validate();
                         repaint();
                         setLayout(new GridLayout(3,1));
+                        
                         //Semifinals screen setup
-
                         seriesScore.setFont(font);
                         seriesScore.setForeground(Color.white);
                         seriesScore.setHorizontalAlignment(SwingConstants.CENTER);
