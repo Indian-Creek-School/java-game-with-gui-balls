@@ -8,10 +8,10 @@ public class PF extends Player{
         Random.getRandomInt(60,85),
         Random.getRandomInt(70,90),
         Random.getRandomInt(40,50),
-        Random.getRandomInt(70,85),
+        Random.getRandomInt(75,90),
         Random.getRandomInt(50,70),
-        Random.getRandomInt(40,50),
-        Random.getRandomInt(40,45));
+        Random.getRandomInt(45,60),
+        Random.getRandomInt(40,55));
         overall = determineOverall();
     }
 
