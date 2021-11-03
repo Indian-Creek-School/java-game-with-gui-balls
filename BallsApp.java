@@ -515,21 +515,25 @@ public class BallsApp extends JPanel{
                 record.setHorizontalAlignment(SwingConstants.CENTER);
                 record.setVerticalAlignment(SwingConstants.CENTER);
 
+                //sets text of JLabel to display team
                 teamDisplay.setFont(font);
                 teamDisplay.setForeground(Color.white);
                 teamDisplay.setHorizontalAlignment(SwingConstants.CENTER);
                 teamDisplay.setVerticalAlignment(SwingConstants.CENTER);
                 teamDisplay.setText(userTeam.toString());
 
+                //adds all to layout and updates layout
                 add(b8);
                 add(record);
                 add(teamDisplay);
                 validate();
                 repaint();
 
+                //sets text of record to current record
                 String currRecord = userTeam.getRecord();
                 record.setText(currRecord);
 
+                //adds all teams to league which will be used to loop through and sim games
                 league.add(team1);
                 league.add(team2);
                 league.add(team3);
@@ -540,7 +544,10 @@ public class BallsApp extends JPanel{
                  */
                 for(int i = 0; i < 2; i++){
                     for(int j = 0; j < 4; j++){
+                        //if true user wins game, if false user loses
                         Boolean win = mainSeason.simGame(userTeam, league.get(j));
+
+                        //updates record according to boolean value
                         if(win) {
                             userTeam.wins += 1;
                             league.get(j).losses += 1;
@@ -548,6 +555,7 @@ public class BallsApp extends JPanel{
                             userTeam.losses += 1;
                             league.get(j).wins += 1;
                         }
+                        //updates record and GUI text
                         currRecord = userTeam.getRecord();
                         record.setText(currRecord);
                         validate();
@@ -558,8 +566,11 @@ public class BallsApp extends JPanel{
                 //sims cpu v cpu games
                 for(int i = 0; i < 4; i++) {
                     for(int j = 0; j < 4; j++){
+                        //sims games of cpu teams
                         if(league.get(i) != league.get(j)){
                             Boolean simGame = mainSeason.simGame(league.get(i), league.get(j));
+
+                            //updates their record according to value of boolean
                             if(simGame){
                                 league.get(i).wins += 1;
                                 league.get(j).losses += 1;
@@ -573,35 +584,55 @@ public class BallsApp extends JPanel{
             }
         });
 
+
+        //button counter variable that counts how many times it has been run
         timesRun = 0;
         b8.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                //updates times run
                 timesRun = timesRun + 1;
+
+                //runs folloiwng code that sims regular season games as long as it is less than 8 times
                 if(timesRun < 8) {
-                    int x = Random.getRandomInt(0,1);
+                    //random player gets a disease, just an easter egg
+                    int x = Random.getRandomInt(0,8);
                     if(x==0){
                         System.out.println(Random.aids(userTeam));
                     }
+
+                    //generates random team that will be used in trade
                     Team randomTeam = mainSeason.generateRandomTeam(team1, team2, team3, team4);
+
+                    //generates random player on random team
                     Player tradingFor = mainSeason.getPlayerTradingFor(randomTeam);
+
+                    //generates index of random player user is trading
                     int intOfPlayerTrading = (int)(Math.random()*8);
                     Player playerTrading = userTeam.team.get(intOfPlayerTrading);
 
+                    //pop up options menu that returns 0 if yes and 1 if no in regards to the trade
                     int returnValue = JOptionPane.showConfirmDialog(null, "A team has proposed trading " +  tradingFor.toString() + ", " + tradingFor.getPos() + ", " + tradingFor.getOverall()+ " " +
                     "for your player "  +  playerTrading.toString() + ", " + playerTrading.getPos() + ", " + playerTrading.getOverall(), "Trade Proposal", JOptionPane.YES_NO_OPTION);
-                    System.out.println(returnValue);
+                    // System.out.println(returnValue);
+
+                    //updates a boolean value based on user's input in pop up menu
                     Boolean tradeAccepted = false;
                     if(returnValue == 0){
                         tradeAccepted = true;
                     } else if(returnValue == 1) {
                         tradeAccepted = false;
                     }
+
+                    //algorithm that runs the trade based on boolean tradeAccepted
                     mainSeason.trade(tradeAccepted, playerTrading, tradingFor, userTeam, randomTeam);
                     // System.out.println(userTeam.toString());
+
+                    //updates team text
                     teamDisplay.setText(userTeam.toString());
                     validate();
                     repaint();
 
+                    //sims next 8 user games
                     for(int i = 0; i < 2; i++){
                         for(int j = 0; j < 4; j++){
                             Boolean win = mainSeason.simGame(userTeam, league.get(j));
@@ -635,24 +666,28 @@ public class BallsApp extends JPanel{
                         }
                     }
 
-                    System.out.println(team1.getRecord());
-                    System.out.println(team2.getRecord());
-                    System.out.println(team3.getRecord());
-                    System.out.println(team4.getRecord());
-                    System.out.println(userTeam.getRecord());
+                    // System.out.println(team1.getRecord());
+                    // System.out.println(team2.getRecord());
+                    // System.out.println(team3.getRecord());
+                    // System.out.println(team4.getRecord());
+                    // System.out.println(userTeam.getRecord());
                 } else {
+                    //runs when regular season is done
                     removeAll();
                     validate();
                     repaint();
                     setLayout(new GridLayout(2,1));
                     playoffs = mainSeason.setPlayoffs(userTeam, team1, team2, team3, team4);
                     //checking if user made playoffs
-                    Boolean userInPlayoffs = false;
+                    Boolean userInPlayoffs = null;
                     for(Team t : playoffs){
                         if(t.equals(userTeam)){
                             userInPlayoffs = true;
+                        } else {
+                            userInPlayoffs = false;
                         }
                     }
+                    System.out.println(userInPlayoffs);
                     if(userInPlayoffs) {
                         removeAll();
                         validate();
@@ -683,6 +718,7 @@ public class BallsApp extends JPanel{
             }
         });
 
+        //end button that closes GUI
         b10.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 System.exit(0);
