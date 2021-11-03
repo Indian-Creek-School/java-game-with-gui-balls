@@ -27,6 +27,7 @@ public class BallsApp extends JPanel{
 
     //counts time a button runs
     private int timesRun;
+    private int gameCount;
 
     //array lists which separates prospect players to be drafted by position
     private ArrayList<Player> pgProspects;
@@ -86,6 +87,10 @@ public class BallsApp extends JPanel{
     public JLabel record = new JLabel("record");
     public JLabel teamDisplay = new JLabel("User Team");
     public JLabel endLoseMessage = new JLabel("You lost");
+    public JLabel teamDisplay2 = new JLabel("User Team 2");
+
+    //end game message
+    public JLabel endLoseSemisMessage = new JLabel("You Lost v2");
 
 
     public BallsApp(){
@@ -693,13 +698,13 @@ public class BallsApp extends JPanel{
                         validate();
                         repaint();
                         setLayout(new GridLayout(3,1));
-                        
+
                         //Semifinals screen setup
                         seriesScore.setFont(font);
                         seriesScore.setForeground(Color.white);
                         seriesScore.setHorizontalAlignment(SwingConstants.CENTER);
                         seriesScore.setVerticalAlignment(SwingConstants.CENTER);
-                        teamDisplay.setText(userTeam.semiWs + " - " + userTeam.semiLs);
+                        teamDisplay.setText(userTeam.toString());
                         add(b11);
                         add(seriesScore);
                         add(teamDisplay);
@@ -727,9 +732,9 @@ public class BallsApp extends JPanel{
             }
         });
 
+        gameCount = 0;
         b11.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                int gameCount = 0;
                 if(gameCount < 3){
                     //add a joptions pane here where they make decisions
 
@@ -759,6 +764,23 @@ public class BallsApp extends JPanel{
                     validate();
                     repaint();
                     gameCount++;
+                } else {
+                    if(userTeam.semiWs > userTeam.semiLs){
+                        removeAll();
+                        validate();
+                        repaint();
+                    } else {
+                        removeAll();
+                        validate();
+                        repaint();
+                        setLayout(new GridLayout(2,1));
+                        endLoseSemisMessage.setFont(font);
+                        endLoseSemisMessage.setForeground(Color.white);
+                        endLoseSemisMessage.setHorizontalAlignment(SwingConstants.CENTER);
+                        endLoseSemisMessage.setVerticalAlignment(SwingConstants.CENTER);
+                        endLoseSemisMessage.setText("You lost and you didn't get the first overall pick. Sucks to suck!");
+                        add(b10);
+                    }
                 }
             }
         });
