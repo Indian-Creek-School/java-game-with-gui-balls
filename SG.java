@@ -3,7 +3,7 @@ public class SG extends Player{
     private int overall;
     public SG(){
         super(Random.getRandomInt(70,85),
-        Random.getRandomInt(70,100),
+        Random.getRandomInt(70,80),
         Random.getRandomInt(80,90),
         Random.getRandomInt(65,85),
         Random.getRandomInt(60,80),
