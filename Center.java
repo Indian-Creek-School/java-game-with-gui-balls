@@ -18,13 +18,13 @@ public class Center extends Player{
         int average = 0;
         average = (int)(0.25*this.getHandle()+
         1.75*this.getClose()+
-        1.5*this.getHeight()+
+        1.75*this.getHeight()+
         0.5*this.getIQ()+
         1.5*this.getMid()+
         0.5*this.getPlaymaking()+
         1.75*this.getSize()+
         0.5*this.getThree()+
-        0.75*this.getSpeed())/9;
+        0.5*this.getSpeed())/9;
 
         return average;
     }

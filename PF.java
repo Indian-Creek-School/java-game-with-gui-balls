@@ -5,7 +5,7 @@ public class PF extends Player{
     public PF(){
         super(Random.getRandomInt(40,50),
         Random.getRandomInt(30,40),
-        Random.getRandomInt(45,85),
+        Random.getRandomInt(60,85),
         Random.getRandomInt(70,90),
         Random.getRandomInt(40,50),
         Random.getRandomInt(70,85),
@@ -18,14 +18,14 @@ public class PF extends Player{
     public int determineOverall(){
         int average = 0;
         average = (int)(0.5*this.getHandle()+
-        1.5*this.getClose()+
+        1.75*this.getClose()+
         1.5*this.getHeight()+
         0.5*this.getIQ()+
-        1.5*this.getMid()+
+        1.75*this.getMid()+
         0.5*this.getPlaymaking()+
         1.5*this.getSize()+
-        0.75*this.getThree()+
-        0.75*this.getSpeed())/9;
+        0.5*this.getThree()+
+        0.5*this.getSpeed())/9;
         return average;
     }
 
