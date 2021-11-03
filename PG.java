@@ -18,10 +18,10 @@ public class PG extends Player {
         int average = 0;
         average = (int)(1.25*this.getHandle()+
         0.5*this.getClose()+
-        0.5*this.getHeight()+
+        0.75*this.getHeight()+
         1.25*this.getIQ()+
         1*this.getMid()+
-        1.5*this.getPlaymaking()+
+        1.25*this.getPlaymaking()+
         0.5*this.getSize()+
         1.25*this.getThree()+
         1.25*this.getSpeed())/9;
