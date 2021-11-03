@@ -703,6 +703,8 @@ public class BallsApp extends JPanel{
                         add(b11);
                         add(seriesScore);
                         add(teamDisplay);
+                        validate();
+                        repaint();
                     } else {
                         endLoseMessage.setText("Congratulations! You missed the playoffs and earned the number one overall pick! (aka, you lose)");
                         endLoseMessage.setFont(font);
