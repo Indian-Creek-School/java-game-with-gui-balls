@@ -108,7 +108,8 @@ public class Team implements Comparable{
         return "<html> "+ result;
     }
 
-    public int compareTo(Team t1) {
-        return this.wins - t1.wins;
+    @Override
+    public int compareTo(Object o) {
+        return this.wins - ((Team)o).wins;
     }
 }

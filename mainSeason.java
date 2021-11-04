@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.URL;
 import javax.sound.sampled.*;
 import java.util.ArrayList;
+import java.util.Collections;
 public class mainSeason{
    public static int gamecount;
    public static Team myTeam;
@@ -96,33 +97,16 @@ public class mainSeason{
      }
 
      public static ArrayList<Team> setPlayoffs(Team t1, Team t2, Team t3, Team t4, Team t5) {
-        ArrayList<Team> allTeams = new ArrayList<Team>();
-        allTeams.add(t1);
-        allTeams.add(t2);
-        allTeams.add(t3);
-        allTeams.add(t4);
-        allTeams.add(t5);
+        ArrayList<Team> playoffs = new ArrayList<Team>();
+        playoffs.add(t1);
+        playoffs.add(t2);
+        playoffs.add(t3);
+        playoffs.add(t4);
+        playoffs.add(t5);
 
-        ArrayList<Team> playoffs = sortByWins(allTeams);
+        Collections.sort(playoffs);
         playoffs.remove(0);
         return playoffs;
 
-     }
-
-     public static ArrayList<Team> sortByWins(ArrayList<Team> team) { //credits to https://www.wikitechy.com/interview-questions/java/what-is-linear-sort-in-java/
-         ArrayList<Team> t1 = team;
-   
-         int n = team.size();  
-         for (int j = 1; j < n; j++) {  
-               Team key = t1.get(j);  
-               int i = j-1;  
-               while ( (i > -1) && ( t1.get(i).getWins() > key.getWins() ) ) {  
-                  t1.set(i+1, t1.get(i));  
-                  i--;  
-               }  
-               t1.set(i+1, key);
-         }  
-         System.out.println(t1.toString());
-         return t1;
-     }  
+     } 
 }
