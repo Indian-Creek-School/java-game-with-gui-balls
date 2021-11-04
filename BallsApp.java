@@ -743,8 +743,7 @@ public class BallsApp extends JPanel{
         gameCount = 0;
         b11.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if(gameCount < 3){
-                    //add a joptions pane here where they make decisions
+                if(gameCount < 3 || userTeam.semiWs == 2){
 
                     //finding which seed users team is:
                     int seedOfUser = 0;
@@ -759,9 +758,9 @@ public class BallsApp extends JPanel{
                     if(gameCount == 0){
                         int returnValue = JOptionPane.showConfirmDialog(null, "The opposing team's point guard has a turnover issue. Should you (yes) switch to a zone defense or (no) stick to man?", "Game 1 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
-                            decision = 2;
-                        } else {
                             decision = -2;
+                        } else {
+                            decision = 2;
                         }
                     } else if(gameCount == 1){
                         int returnValue = JOptionPane.showConfirmDialog(null, "Your starting small forward is injured. Should you (yes) play a backup in his place or (no) have him push through", "Game 2 Strategy", JOptionPane.YES_NO_OPTION);
