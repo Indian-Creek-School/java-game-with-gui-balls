@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Team {
+public class Team implements Comparable{
     public ArrayList<Player> team;
     public int wins;
     public int losses;
@@ -108,4 +108,7 @@ public class Team {
         return "<html> "+ result;
     }
 
+    public int compareTo(Team t1) {
+        return this.wins - t1.wins;
+    }
 }
