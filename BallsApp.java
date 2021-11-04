@@ -743,7 +743,7 @@ public class BallsApp extends JPanel{
         gameCount = 0;
         b11.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if(gameCount < 3 || userTeam.semiWs == 2){
+                if(gameCount < 3 || userTeam.semiWs <= 2){
 
                     //finding which seed users team is:
                     int seedOfUser = 0;
@@ -752,6 +752,8 @@ public class BallsApp extends JPanel{
                             seedOfUser = i;
                         }
                     }
+
+                    System.out.println(seedOfUser);
 
                     //if loop where within prompts will be shown to user for gametime decisions
                     int decision = 0;
@@ -777,11 +779,22 @@ public class BallsApp extends JPanel{
                             decision = 5;
                         }
                     }
-                    //sims game between first and fourth seeds
-                    Playoffs.simSemisPlayoffGame(playoffs.get(0), playoffs.get(3), decision);
 
-                    //sims game between second and third seeds
-                    Playoffs.simSemisPlayoffGame(playoffs.get(1), playoffs.get(2), decision);
+                    //sims semifinals game based on user seed
+                    if(seedOfUser == 0){
+                        Playoffs.simSemisPlayoffGame(playoffs.get(0), playoffs.get(3), decision);
+                        Playoffs.simSemisPlayoffGame(playoffs.get(1), playoffs.get(2), 0);
+                    } else if(seedOfUser == 1){
+                        Playoffs.simSemisPlayoffGame(playoffs.get(1), playoffs.get(2), decision);
+                        Playoffs.simSemisPlayoffGame(playoffs.get(0), playoffs.get(3), 0);
+                    } else if(seedOfUser == 2){
+                        Playoffs.simSemisPlayoffGame(playoffs.get(2), playoffs.get(1), decision);
+                        Playoffs.simSemisPlayoffGame(playoffs.get(3), playoffs.get(0), 0);
+                    } else if(seedOfUser == 3){
+                        Playoffs.simSemisPlayoffGame(playoffs.get(3), playoffs.get(0), decision);
+                        Playoffs.simSemisPlayoffGame(playoffs.get(1), playoffs.get(2), 0);
+                    }
+
 
                     seriesScore.setText(userTeam.semiWs + " - " + userTeam.semiLs);
                     validate();
@@ -796,6 +809,8 @@ public class BallsApp extends JPanel{
                         seriesScore.setText(userTeam.finalWs + " - " + userTeam.finalLs);
                         add(seriesScore);
                         add(teamDisplay);
+                        validate();
+                        repaint();
                     } else {
                         removeAll();
                         validate();
@@ -809,6 +824,12 @@ public class BallsApp extends JPanel{
                         add(b10);
                     }
                 }
+            }
+        });
+
+        b12.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+
             }
         });
     }
