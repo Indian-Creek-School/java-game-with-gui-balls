@@ -122,7 +122,7 @@ public class mainSeason{
                }  
                t1.set(i+1, key);
          }  
-
+         System.out.println(t1.toString());
          return t1;
      }  
 }

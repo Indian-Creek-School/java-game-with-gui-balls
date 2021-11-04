@@ -679,11 +679,11 @@ public class BallsApp extends JPanel{
                         }
                     }
 
-                    // System.out.println(team1.getRecord());
-                    // System.out.println(team2.getRecord());
-                    // System.out.println(team3.getRecord());
-                    // System.out.println(team4.getRecord());
-                    // System.out.println(userTeam.getRecord());
+                    System.out.println(team1.getRecord());
+                    System.out.println(team2.getRecord());
+                    System.out.println(team3.getRecord());
+                    System.out.println(team4.getRecord());
+                    System.out.println(userTeam.getRecord());
                 } else {
                     //runs when regular season is done
                     removeAll();
@@ -772,9 +772,9 @@ public class BallsApp extends JPanel{
                     } else if (gameCount == 2){
                         int returnValue = JOptionPane.showConfirmDialog(null, "This is it. Your last game. Your shooting guard has been cold all series long. Should you (yes) keep starting him or (no) start the backup", "Game 3 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
-                            decision = -2;
+                            decision = -5;
                         } else {
-                            decision = 2;
+                            decision = 5;
                         }
                     }
                     //sims game between first and fourth seeds
