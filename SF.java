@@ -5,10 +5,10 @@ public class SF extends Player{
     public SF(){
         super(Random.getRandomInt(50,75),
         Random.getRandomInt(50,80),
-        Random.getRandomInt(75,100),
-        Random.getRandomInt(70,85),
+        Random.getRandomInt(80,90),
+        Random.getRandomInt(65,80),
         Random.getRandomInt(50,75),
-        Random.getRandomInt(50,70),
+        Random.getRandomInt(70,75),
         Random.getRandomInt(50,70),
         Random.getRandomInt(50,70),
         Random.getRandomInt(45,60));
@@ -20,8 +20,8 @@ public class SF extends Player{
         average = (int)(0.5*this.getHandle()+
         1.25*this.getClose()+
         1*this.getHeight()+
-        1*this.getIQ()+
-        1.5*this.getMid()+
+        0.5*this.getIQ()+
+        2*this.getMid()+
         0.5*this.getPlaymaking()+
         1.25*this.getSize()+
         1*this.getThree()+
