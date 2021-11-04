@@ -743,7 +743,7 @@ public class BallsApp extends JPanel{
         gameCount = 0;
         b11.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if(gameCount < 3 || userTeam.semiWs <= 2){
+                if(gameCount < 3 && userTeam.semiWs <= 2){
 
                     //finding which seed users team is:
                     int seedOfUser = 0;
@@ -752,7 +752,7 @@ public class BallsApp extends JPanel{
                             seedOfUser = i;
                         }
                     }
-
+                
                     System.out.println(seedOfUser);
 
                     //if loop where within prompts will be shown to user for gametime decisions
