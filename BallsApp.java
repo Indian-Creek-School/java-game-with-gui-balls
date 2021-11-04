@@ -79,6 +79,9 @@ public class BallsApp extends JPanel{
     //semifinals play game button
     public JButton b11;
 
+    //finals play game button
+    public JButton b12;
+
     //semifinals record label
     public JLabel seriesScore = new JLabel("Series");
 
@@ -189,6 +192,11 @@ public class BallsApp extends JPanel{
         b11 = new JButton("Play Game");
         b11.setVerticalTextPosition(AbstractButton.CENTER);
         b11.setHorizontalTextPosition(AbstractButton.LEADING);
+
+        //button for finals:
+        b12 = new JButton("Play Finals Game");
+        b12.setVerticalTextPosition(AbstractButton.CENTER);
+        b12.setHorizontalTextPosition(AbstractButton.LEADING);
 
         //adding elements to grid layout
         this.add(pgs);
@@ -747,18 +755,34 @@ public class BallsApp extends JPanel{
                     }
 
                     //if loop where within prompts will be shown to user for gametime decisions
+                    int decision = 0;
                     if(gameCount == 0){
-
+                        int returnValue = JOptionPane.showConfirmDialog(null, "The opposing team's point guard has a turnover issue. Should you (yes) switch to a zone defense or (no) stick to man?", "Game 1 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = 2;
+                        } else {
+                            decision = -2;
+                        }
                     } else if(gameCount == 1){
-
+                        int returnValue = JOptionPane.showConfirmDialog(null, "Your starting small forward is injured. Should you (yes) play a backup in his place or (no) have him push through", "Game 2 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = 2;
+                        } else {
+                            decision = -2;
+                        }
                     } else if (gameCount == 2){
-
+                        int returnValue = JOptionPane.showConfirmDialog(null, "This is it. Your last game. Your shooting guard has been cold all series long. Should you (yes) keep starting him or (no) start the backup", "Game 3 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = -2;
+                        } else {
+                            decision = 2;
+                        }
                     }
                     //sims game between first and fourth seeds
-                    Playoffs.simSemisPlayoffGame(playoffs.get(0), playoffs.get(3), 0);
+                    Playoffs.simSemisPlayoffGame(playoffs.get(0), playoffs.get(3), decision);
 
                     //sims game between second and third seeds
-                    Playoffs.simSemisPlayoffGame(playoffs.get(1), playoffs.get(2), 0);
+                    Playoffs.simSemisPlayoffGame(playoffs.get(1), playoffs.get(2), decision);
 
                     seriesScore.setText(userTeam.semiWs + " - " + userTeam.semiLs);
                     validate();
@@ -769,6 +793,10 @@ public class BallsApp extends JPanel{
                         removeAll();
                         validate();
                         repaint();
+                        add(b12);
+                        seriesScore.setText(userTeam.finalWs + " - " + userTeam.finalLs);
+                        add(seriesScore);
+                        add(teamDisplay);
                     } else {
                         removeAll();
                         validate();
