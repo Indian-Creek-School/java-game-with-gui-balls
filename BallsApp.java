@@ -28,6 +28,7 @@ public class BallsApp extends JPanel{
     //counts time a button runs
     private int timesRun;
     private int gameCount;
+    private int finalsGameCount;
 
     //array lists which separates prospect players to be drafted by position
     private ArrayList<Player> pgProspects;
@@ -83,7 +84,10 @@ public class BallsApp extends JPanel{
     public JButton b12;
 
     //semifinals record label
-    public JLabel seriesScore = new JLabel("Series");
+    public JLabel seriesScore = new JLabel("Semifinals");
+
+    //finals record label
+    public JLabel finalSeriesScore = new JLabel("Finals");
 
     //JLabel for showing team:
     public JLabel output;
@@ -94,6 +98,8 @@ public class BallsApp extends JPanel{
 
     //end game message
     public JLabel endLoseSemisMessage = new JLabel("You Lost v2");
+    public JLabel endLoseFinalsMessage = new JLabel("You Lost v3");
+    public JLabel winMessage = new JLabel("Congratulations!");
 
 
     public BallsApp(){
@@ -743,10 +749,10 @@ public class BallsApp extends JPanel{
         gameCount = 0;
         b11.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                int seedOfUser = 0;
                 if(gameCount < 3 && userTeam.semiWs <= 2){
 
                     //finding which seed users team is:
-                    int seedOfUser = 0;
                     for(int i = 0; i < playoffs.size(); i++){
                         if(playoffs.get(i) == userTeam){
                             seedOfUser = i;
@@ -805,9 +811,37 @@ public class BallsApp extends JPanel{
                         removeAll();
                         validate();
                         repaint();
+                        if(seedOfUser == 0){
+                            playoffs.remove(3);
+                            if(playoffs.get(1).semiWs > playoffs.get(2).semiWs) {
+                                playoffs.remove(2);
+                            } else {
+                                playoffs.remove(1);
+                            }
+                        } else if(seedOfUser == 3){
+                            playoffs.remove(0);
+                            if(playoffs.get(1).semiWs > playoffs.get(2).semiWs) {
+                                playoffs.remove(2);
+                            } else {
+                                playoffs.remove(1);
+                            }
+                        } else if(seedOfUser == 1){
+                            playoffs.remove(2);
+                            if(playoffs.get(0).semiWs > playoffs.get(3).semiWs) {
+                                playoffs.remove(3);
+                            } else {
+                                playoffs.remove(0);
+                            }
+                        } else if(seedOfUser == 2){
+                            playoffs.remove(1);
+                            if(playoffs.get(0).semiWs > playoffs.get(3).semiWs) {
+                                playoffs.remove(3);
+                            } else {
+                                playoffs.remove(0);
+                            }
+                        }
                         add(b12);
-                        seriesScore.setText(userTeam.finalWs + " - " + userTeam.finalLs);
-                        add(seriesScore);
+                        add(finalSeriesScore);
                         add(teamDisplay);
                         validate();
                         repaint();
@@ -827,9 +861,77 @@ public class BallsApp extends JPanel{
             }
         });
 
+        finalsGameCount = 0;
         b12.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
+                if(finalsGameCount < 7 && userTeam.finalWs < 4) {
+                    int decision = 0;
+                    if(gameCount == 0){
+                        int returnValue = JOptionPane.showConfirmDialog(null, "The opposing team's point guard has a turnover issue. Should you (yes) switch to a zone defense or (no) stick to man?", "Game 1 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = -2;
+                        } else {
+                            decision = 2;
+                        }
+                    } else if(gameCount == 1){
+                        int returnValue = JOptionPane.showConfirmDialog(null, "Your starting small forward is injured. Should you (yes) play a backup in his place or (no) have him push through", "Game 2 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = 2;
+                        } else {
+                            decision = -2;
+                        }
+                    } else if (gameCount == 2){
+                        int returnValue = JOptionPane.showConfirmDialog(null, "This is it. Your last game. Your shooting guard has been cold all series long. Should you (yes) keep starting him or (no) start the backup", "Game 3 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = -5;
+                        } else {
+                            decision = 5;
+                        }
+                    }
+                    //finding index of non-user playoff team
+                    int index = 0;
+                    for(int i = 0; i < playoffs.size(); i++){
+                        if(!playoffs.get(i).equals(userTeam)){
+                            index = i;
+                        }
+                    }
+                    Playoffs.simFinalsPlayoffGame(userTeam, playoffs.get(index), decision);
 
+                    finalSeriesScore.setText(userTeam.semiWs + " - " + userTeam.semiLs);
+                    validate();
+                    repaint();
+                    finalsGameCount++;
+                } else {
+                    if(userTeam.finalWs > userTeam.finalLs) {
+                        removeAll();
+                        validate();
+                        repaint();
+                        setLayout(new GridLayout(2,1));
+                        winMessage.setText("Congratulations! You won the finals!");
+                        winMessage.setFont(font);
+                        winMessage.setForeground(Color.white);
+                        winMessage.setHorizontalAlignment(SwingConstants.CENTER);
+                        winMessage.setVerticalAlignment(SwingConstants.CENTER);
+                        add(winMessage);
+                        add(b10);
+                        validate();
+                        repaint();
+                    } else {
+                        removeAll();
+                        validate();
+                        repaint();
+                        setLayout(new GridLayout(2,1));
+                        endLoseFinalsMessage.setText("Congratulations! You're the biggest loser!");
+                        endLoseFinalsMessage.setFont(font);
+                        endLoseFinalsMessage.setForeground(Color.white);
+                        endLoseFinalsMessage.setHorizontalAlignment(SwingConstants.CENTER);
+                        endLoseFinalsMessage.setVerticalAlignment(SwingConstants.CENTER);
+                        add(endLoseFinalsMessage);
+                        add(b10);
+                        validate();
+                        repaint();
+                    } 
+                }
             }
         });
     }
