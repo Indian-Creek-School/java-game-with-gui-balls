@@ -897,7 +897,11 @@ public class BallsApp extends JPanel{
                     }
                     Playoffs.simFinalsPlayoffGame(userTeam, playoffs.get(index), decision);
 
-                    finalSeriesScore.setText(userTeam.semiWs + " - " + userTeam.semiLs);
+                    finalSeriesScore.setText(userTeam.finalWs + " - " + userTeam.finalLs);
+                    finalSeriesScore.setFont(font);
+                    finalSeriesScore.setForeground(Color.white);
+                    finalSeriesScore.setHorizontalAlignment(SwingConstants.CENTER);
+                    finalSeriesScore.setVerticalAlignment(SwingConstants.CENTER);
                     validate();
                     repaint();
                     finalsGameCount++;
