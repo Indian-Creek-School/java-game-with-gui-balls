@@ -750,7 +750,8 @@ public class BallsApp extends JPanel{
         b11.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 int seedOfUser = 0;
-                if(gameCount < 3 && userTeam.semiWs <= 2){
+                int counter = userTeam.finalWs;
+                if(gameCount < 3 && counter <= 2){
 
                     //finding which seed users team is:
                     for(int i = 0; i < playoffs.size(); i++){
@@ -806,6 +807,7 @@ public class BallsApp extends JPanel{
                     validate();
                     repaint();
                     gameCount++;
+                    counter = userTeam.semiWs;
                 } else {
                     if(userTeam.semiWs > userTeam.semiLs){
                         removeAll();
@@ -864,28 +866,57 @@ public class BallsApp extends JPanel{
         finalsGameCount = 0;
         b12.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                if(finalsGameCount < 7 && userTeam.finalWs < 4) {
+                int counter = userTeam.finalWs;
+                if(finalsGameCount < 7 && counter < 4) {
                     int decision = 0;
                     if(gameCount == 0){
-                        int returnValue = JOptionPane.showConfirmDialog(null, "The opposing team's point guard has a turnover issue. Should you (yes) switch to a zone defense or (no) stick to man?", "Game 1 Strategy", JOptionPane.YES_NO_OPTION);
+                        int returnValue = JOptionPane.showConfirmDialog(null, "Your opponent likes to play with a fast pace. Should you slow it down on offense (yes) or push the ball on offense (no).", "Game 1 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
-                            decision = -2;
-                        } else {
                             decision = 2;
+                        } else {
+                            decision = -2;
                         }
                     } else if(gameCount == 1){
-                        int returnValue = JOptionPane.showConfirmDialog(null, "Your starting small forward is injured. Should you (yes) play a backup in his place or (no) have him push through", "Game 2 Strategy", JOptionPane.YES_NO_OPTION);
+                        int returnValue = JOptionPane.showConfirmDialog(null, "Before the big game your team wants to go out to a party. Should you let them to increase morale (yes) or tell them no (no)", "Game 2 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
-                            decision = 2;
-                        } else {
                             decision = -2;
+                        } else {
+                            decision = 2;
                         }
                     } else if (gameCount == 2){
-                        int returnValue = JOptionPane.showConfirmDialog(null, "This is it. Your last game. Your shooting guard has been cold all series long. Should you (yes) keep starting him or (no) start the backup", "Game 3 Strategy", JOptionPane.YES_NO_OPTION);
+                        int returnValue = JOptionPane.showConfirmDialog(null, "Your starting PF was caught out of his room after curfew. Should you (yes) bench him or start him (no)", "Game 3 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
-                            decision = -5;
+                            decision = 3;
                         } else {
-                            decision = 5;
+                            decision = -3;
+                        }
+                    } else if(gameCount == 3) {
+                        int returnValue = JOptionPane.showConfirmDialog(null, "Your team is struggling to figure out the opponent's scheme. Should you (no) continue with your normal pre day routines or (yes) have your team watch film.", "Game 4 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = -3;
+                        } else {
+                            decision = 3;
+                        }
+                    } else if(gameCount == 4){
+                        int returnValue = JOptionPane.showConfirmDialog(null, "One of your players was caught playing BallsApp.java. Should you (yes) bench him or (no) start him?", "Game 5 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = -4;
+                        } else {
+                            decision = 4;
+                        }
+                    } else if(gameCount == 5){
+                        int returnValue = JOptionPane.showConfirmDialog(null, "This is a pivotal game. Should you (yes) feed have a pizza party before the game or (no) have them rest in their rooms?", "Game 6 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = 1;
+                        } else {
+                            decision = -1;
+                        }
+                    } else if(gameCount == 6){
+                        int returnValue = JOptionPane.showConfirmDialog(null, "Game 7. This is where legends are made. Are you a legend?", "Game 7 Strategy", JOptionPane.YES_NO_OPTION);
+                        if(returnValue == 0){
+                            decision = 9;
+                        } else {
+                            decision = -9;
                         }
                     }
                     //finding index of non-user playoff team
@@ -905,6 +936,7 @@ public class BallsApp extends JPanel{
                     validate();
                     repaint();
                     finalsGameCount++;
+                    counter = userTeam.finalWs;
                 } else {
                     if(userTeam.finalWs > userTeam.finalLs) {
                         removeAll();
