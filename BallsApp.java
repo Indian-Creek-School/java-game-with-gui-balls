@@ -685,11 +685,11 @@ public class BallsApp extends JPanel{
                         }
                     }
 
-                    System.out.println(team1.getRecord());
-                    System.out.println(team2.getRecord());
-                    System.out.println(team3.getRecord());
-                    System.out.println(team4.getRecord());
-                    System.out.println(userTeam.getRecord());
+                    // System.out.println(team1.getRecord());
+                    // System.out.println(team2.getRecord());
+                    // System.out.println(team3.getRecord());
+                    // System.out.println(team4.getRecord());
+                    // System.out.println(userTeam.getRecord());
                 } else {
                     //runs when regular season is done
                     removeAll();
@@ -725,6 +725,7 @@ public class BallsApp extends JPanel{
                         validate();
                         repaint();
                     } else {
+                        //sets lose message to GUI if user loses 
                         endLoseMessage.setText("Congratulations! You missed the playoffs and earned the number one overall pick! (aka, you lose)");
                         endLoseMessage.setFont(font);
                         endLoseMessage.setForeground(Color.white);
@@ -802,17 +803,19 @@ public class BallsApp extends JPanel{
                         Playoffs.simSemisPlayoffGame(playoffs.get(1), playoffs.get(2), 0);
                     }
 
-
+                    //updates GUI
                     seriesScore.setText(userTeam.semiWs + " - " + userTeam.semiLs);
                     validate();
                     repaint();
                     gameCount++;
                     counter = userTeam.semiWs;
                 } else {
+                    //runs after semifinals series is over and checks if they won
                     if(userTeam.semiWs > userTeam.semiLs){
                         removeAll();
                         validate();
                         repaint();
+                        //removing losing teams from playoffs
                         if(seedOfUser == 0){
                             playoffs.remove(3);
                             if(playoffs.get(1).semiWs > playoffs.get(2).semiWs) {
@@ -842,6 +845,8 @@ public class BallsApp extends JPanel{
                                 playoffs.remove(0);
                             }
                         }
+
+                        //updating GUI to finals
                         add(b12);
                         add(finalSeriesScore);
                         add(teamDisplay);
@@ -863,55 +868,63 @@ public class BallsApp extends JPanel{
             }
         });
 
+        //button that will control finals series
         finalsGameCount = 0;
         b12.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
+                //vairable that stores user finals wins
                 int counter = userTeam.finalWs;
+                //if statement that checks if series is over (max games or max number of wins/losses)
                 if(finalsGameCount < 7 && counter < 4) {
+
+                    /**series of if statements and pop ups that ask users to make game strategy decisons
+                     * Depending on response, variable decision is altered to add to user team's overall
+                     * in determining whether they won or not
+                     */
                     int decision = 0;
-                    if(gameCount == 0){
+                    if(finalsGameCount == 0){
                         int returnValue = JOptionPane.showConfirmDialog(null, "Your opponent likes to play with a fast pace. Should you slow it down on offense (yes) or push the ball on offense (no).", "Game 1 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
                             decision = 2;
                         } else {
                             decision = -2;
                         }
-                    } else if(gameCount == 1){
+                    } else if(finalsGameCount == 1){
                         int returnValue = JOptionPane.showConfirmDialog(null, "Before the big game your team wants to go out to a party. Should you let them to increase morale (yes) or tell them no (no)", "Game 2 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
                             decision = -2;
                         } else {
                             decision = 2;
                         }
-                    } else if (gameCount == 2){
+                    } else if (finalsGameCount == 2){
                         int returnValue = JOptionPane.showConfirmDialog(null, "Your starting PF was caught out of his room after curfew. Should you (yes) bench him or start him (no)", "Game 3 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
                             decision = 3;
                         } else {
                             decision = -3;
                         }
-                    } else if(gameCount == 3) {
+                    } else if(finalsGameCount == 3) {
                         int returnValue = JOptionPane.showConfirmDialog(null, "Your team is struggling to figure out the opponent's scheme. Should you (no) continue with your normal pre day routines or (yes) have your team watch film.", "Game 4 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
                             decision = -3;
                         } else {
                             decision = 3;
                         }
-                    } else if(gameCount == 4){
+                    } else if(finalsGameCount == 4){
                         int returnValue = JOptionPane.showConfirmDialog(null, "One of your players was caught playing BallsApp.java. Should you (yes) bench him or (no) start him?", "Game 5 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
                             decision = -4;
                         } else {
                             decision = 4;
                         }
-                    } else if(gameCount == 5){
+                    } else if(finalsGameCount == 5){
                         int returnValue = JOptionPane.showConfirmDialog(null, "This is a pivotal game. Should you (yes) feed have a pizza party before the game or (no) have them rest in their rooms?", "Game 6 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
                             decision = 1;
                         } else {
                             decision = -1;
                         }
-                    } else if(gameCount == 6){
+                    } else if(finalsGameCount == 6){
                         int returnValue = JOptionPane.showConfirmDialog(null, "Game 7. This is where legends are made. Are you a legend?", "Game 7 Strategy", JOptionPane.YES_NO_OPTION);
                         if(returnValue == 0){
                             decision = 9;
@@ -919,6 +932,7 @@ public class BallsApp extends JPanel{
                             decision = -9;
                         }
                     }
+
                     //finding index of non-user playoff team
                     int index = 0;
                     for(int i = 0; i < playoffs.size(); i++){
@@ -926,8 +940,11 @@ public class BallsApp extends JPanel{
                             index = i;
                         }
                     }
+
+                    //sims finals game
                     Playoffs.simFinalsPlayoffGame(userTeam, playoffs.get(index), decision);
 
+                    //updates GUI
                     finalSeriesScore.setText(userTeam.finalWs + " - " + userTeam.finalLs);
                     finalSeriesScore.setFont(font);
                     finalSeriesScore.setForeground(Color.white);
@@ -935,14 +952,22 @@ public class BallsApp extends JPanel{
                     finalSeriesScore.setVerticalAlignment(SwingConstants.CENTER);
                     validate();
                     repaint();
+
+                    //iterates game count and updates user teams wins
                     finalsGameCount++;
                     counter = userTeam.finalWs;
+
+                //when series is over, this code runs and is an exit path from the game
                 } else {
+                    //checks if they won
                     if(userTeam.finalWs > userTeam.finalLs) {
+                        //removes all GUI components
                         removeAll();
                         validate();
                         repaint();
                         setLayout(new GridLayout(2,1));
+
+                        //adds new win GUI
                         winMessage.setText("Congratulations! You won the finals!");
                         winMessage.setFont(font);
                         winMessage.setForeground(Color.white);
@@ -953,10 +978,13 @@ public class BallsApp extends JPanel{
                         validate();
                         repaint();
                     } else {
+                        //removes GUI components
                         removeAll();
                         validate();
                         repaint();
                         setLayout(new GridLayout(2,1));
+
+                        //sets new GUI to lose finals message
                         endLoseFinalsMessage.setText("Congratulations! You're the biggest loser!");
                         endLoseFinalsMessage.setFont(font);
                         endLoseFinalsMessage.setForeground(Color.white);
@@ -972,6 +1000,7 @@ public class BallsApp extends JPanel{
         });
     }
 
+    //method sets up and establishes JFrame for GUI
     public static void setUp(){
         JFrame frame = new JFrame("Balls App");
         frame.setTitle("2051-52 NBA Season Simulator");
