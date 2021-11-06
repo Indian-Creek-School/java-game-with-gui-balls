@@ -751,7 +751,7 @@ public class BallsApp extends JPanel{
         b11.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 int seedOfUser = 0;
-                int counter = userTeam.finalWs;
+                int counter = userTeam.semiWs;
                 if(gameCount < 3 && counter <= 2){
 
                     //finding which seed users team is:
