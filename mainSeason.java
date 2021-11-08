@@ -1,14 +1,24 @@
+//import statements
 import java.io.*;
 import java.net.URL;
 import javax.sound.sampled.*;
 import java.util.ArrayList;
 import java.util.Collections;
-public class mainSeason{
-   public static int gamecount;
-   public static Team myTeam;
-   public static Team tradeTeam;
 
+//class the runs the regular season
+public class mainSeason{
+   //counts number of games played-> really irrelevant
+   public static int gamecount;
+
+   /**
+    * Simulates a game based on overalls. Random events are done by temporarily editing overalls.
+    Directly edits public fields to changes loses and wins of a team
+    * @param t1 first team in game
+    * @param t2 second team in game
+    * @return
+    */
    public static boolean simGame(Team t1, Team t2){
+      //adds one to gamecount
       gamecount++;
 
       //on any given day, teams first pick can go off so there overall will be boosted till 99 for one game
@@ -40,6 +50,14 @@ public class mainSeason{
       }
    }
 
+   /**
+    * returns a random team given an input of 4 teams
+    * @param t1 first sim team
+    * @param t2 second sim team
+    * @param t3 third sim team
+    * @param t4 fourth sim team
+    * @return returns randomly generated team
+    */
    public static Team generateRandomTeam(Team t1, Team t2, Team t3, Team t4){
       int teamTradingWith = (int)(Math.random()*(4)+1);
       if(teamTradingWith == 1){
@@ -57,14 +75,26 @@ public class mainSeason{
       return null;
    }
 
+   /**
+    * 
+    * @param t1 team of player trading for
+    * @return returns player trading for
+    */
    public static Player getPlayerTradingFor(Team t1) {
       int indexOfPlayerTradingFor = (int)(Math.random()*(7));
       Player tradingFor = t1.team.get(indexOfPlayerTradingFor);
       return tradingFor;
    }
 
-   //add random players in the GUI class rather than here.
-   
+   /**
+    * Trading algorithm which depending on user input for trade through boolean
+    * Sets player on one team to player on users Team if boolean wantsTrade is true (users way of accepting a trade)
+    * @param wantsTrade user input on trade (true is accepted, false is declind)
+    * @param p1 player user is trading
+    * @param p2 player user is trading for
+    * @param userTeam team of user
+    * @param tradeTeam team user is trading with
+    */
    public static void trade(Boolean wantsTrade, Player p1, Player p2, Team userTeam, Team tradeTeam) {
       Player playerTrading = p1;
       Player tradingFor = p2;
@@ -76,6 +106,7 @@ public class mainSeason{
       }
    }
     
+   //ignore this
     public void SoundClipTest() {
   
         try {
